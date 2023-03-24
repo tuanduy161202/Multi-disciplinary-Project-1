@@ -31,9 +31,9 @@ CREATE TABLE `account` (
   `is_superuser` tinyint(1) NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
+  `date_joined` datetime(6),
   `house_id` int unsigned,
-  `last_login` datetime(6) NOT NULL,
+  `last_login` datetime(6),
   PRIMARY KEY (`id`),
   KEY `houseID_idx` (`house_id`),
   CONSTRAINT `idhouse` FOREIGN KEY (`house_id`) REFERENCES `house` (`house_id`)
