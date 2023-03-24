@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `smarthome` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `smarthome`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: smarthome
@@ -25,9 +23,9 @@ DROP TABLE IF EXISTS `light`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `light` (
-  `lightID` int unsigned NOT NULL,
-  PRIMARY KEY (`lightID`),
-  CONSTRAINT `lightID` FOREIGN KEY (`lightID`) REFERENCES `device` (`deviceID`)
+  `light_id` int unsigned NOT NULL,
+  PRIMARY KEY (`light_id`),
+  CONSTRAINT `lightID` FOREIGN KEY (`light_id`) REFERENCES `device` (`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,6 +35,7 @@ CREATE TABLE `light` (
 
 LOCK TABLES `light` WRITE;
 /*!40000 ALTER TABLE `light` DISABLE KEYS */;
+INSERT INTO `light` VALUES (2);
 /*!40000 ALTER TABLE `light` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 15:30:23
+-- Dump completed on 2023-03-24 16:40:18

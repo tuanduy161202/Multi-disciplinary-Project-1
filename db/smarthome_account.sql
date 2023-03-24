@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `smarthome` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `smarthome`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: smarthome
@@ -25,20 +23,20 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `accountID` bigint NOT NULL,
+  `id` bigint NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `isSuperUser` tinyint(1) NOT NULL,
-  `isStaff` tinyint(1) NOT NULL,
-  `isActive` tinyint(1) NOT NULL,
-  `joinDate` datetime(6) NOT NULL,
-  `houseID` int unsigned NOT NULL,
-  `lastLogin` datetime(6) NOT NULL,
-  PRIMARY KEY (`accountID`),
-  KEY `houseID_idx` (`houseID`),
-  CONSTRAINT `idhouse` FOREIGN KEY (`houseID`) REFERENCES `house` (`houseID`)
+  `is_superuser` tinyint(1) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  `house_id` int unsigned NOT NULL,
+  `last_login` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `houseID_idx` (`house_id`),
+  CONSTRAINT `idhouse` FOREIGN KEY (`house_id`) REFERENCES `house` (`house_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -48,6 +46,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'duy','abcd','Duy','duy@gmail.com',1,0,1,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000'),(2,'hung','abcd','Hung','hung@gmail.com',1,0,0,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 15:30:22
+-- Dump completed on 2023-03-24 16:40:18

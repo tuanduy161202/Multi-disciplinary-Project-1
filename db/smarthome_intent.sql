@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `smarthome` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `smarthome`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: smarthome
@@ -25,12 +23,12 @@ DROP TABLE IF EXISTS `intent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `intent` (
-  `intentName` varchar(255) NOT NULL,
+  `intent_name` varchar(255) NOT NULL,
   `action` varchar(255) DEFAULT NULL,
   `device_id` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`intentName`),
+  PRIMARY KEY (`intent_name`),
   KEY `device_id_idx` (`device_id`),
-  CONSTRAINT `device_id` FOREIGN KEY (`device_id`) REFERENCES `device` (`deviceID`)
+  CONSTRAINT `device_id` FOREIGN KEY (`device_id`) REFERENCES `device` (`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +38,7 @@ CREATE TABLE `intent` (
 
 LOCK TABLES `intent` WRITE;
 /*!40000 ALTER TABLE `intent` DISABLE KEYS */;
+INSERT INTO `intent` VALUES ('hello','hello',NULL),('mở đèn','lighting',2);
 /*!40000 ALTER TABLE `intent` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 15:30:22
+-- Dump completed on 2023-03-24 16:40:19
