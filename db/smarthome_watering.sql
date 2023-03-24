@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `smarthome` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `smarthome`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: smarthome
@@ -25,11 +23,11 @@ DROP TABLE IF EXISTS `watering`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `watering` (
-  `wateringID` int unsigned NOT NULL,
-  `startTime` datetime NOT NULL,
+  `watering_id` int unsigned NOT NULL,
+  `start_time` datetime(6) NOT NULL,
   `duration` int NOT NULL,
-  PRIMARY KEY (`wateringID`),
-  CONSTRAINT `wateringID` FOREIGN KEY (`wateringID`) REFERENCES `device` (`deviceID`)
+  PRIMARY KEY (`watering_id`),
+  CONSTRAINT `wateringID` FOREIGN KEY (`watering_id`) REFERENCES `device` (`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,6 +37,7 @@ CREATE TABLE `watering` (
 
 LOCK TABLES `watering` WRITE;
 /*!40000 ALTER TABLE `watering` DISABLE KEYS */;
+INSERT INTO `watering` VALUES (3,'2023-01-05 00:00:00.000000',60);
 /*!40000 ALTER TABLE `watering` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 15:30:22
+-- Dump completed on 2023-03-24 16:40:19
