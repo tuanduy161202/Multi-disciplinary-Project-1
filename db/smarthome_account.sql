@@ -32,7 +32,7 @@ CREATE TABLE `account` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
-  `house_id` int unsigned NOT NULL,
+  `house_id` int unsigned,
   `last_login` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `houseID_idx` (`house_id`),
