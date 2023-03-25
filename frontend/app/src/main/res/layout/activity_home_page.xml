@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".HomePage">
+
+
+    <ImageView
+        android:id="@+id/statusBar"
+        android:layout_width="409dp"
+        android:layout_height="169dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/status_bar" />
+
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/hiUser"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <ImageView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/user"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="Adress"
+        android:textColor="#d9d9d9"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.106"
+        app:srcCompat="@drawable/location" />
+
+    <RelativeLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="328dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bottombar"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/roboto"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="#0d529a"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:id="@+id/chatBot"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/bot"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:id="@+id/chart"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:background="@drawable/pie"
+            android:focusable="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weather"
+            android:clickable="true"
+            android:background="@drawable/weather"
+            android:layout_marginStart="180dp"
+            android:focusable="true" />
+
+        <ImageButton
+            android:id="@+id/listCommand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="270dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/listcommand"
+            android:focusable="true" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/tempIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/statusBar"
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/temperature" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/temp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <ImageView
+        android:id="@+id/humidIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/humidity" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/humid"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.613"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <RelativeLayout
+        android:id="@+id/LampTile"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/tileon"
+        android:backgroundTint="#ffffffff"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.472">
+
+    <RelativeLayout
+        android:id="@+id/lampCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ellipse_6"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lamp"
+            android:id="@+id/lampIcon"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            />
+    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#189bfa"
+            android:textSize="28sp"
+            android:id="@+id/lampStr"
+            android:fontFamily="@font/roboto"
+            android:text="@string/lamp"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/lampSwitch"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
+            android:checked="true"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+
+<!--  Fan tile  -->
+    <RelativeLayout
+        android:id="@+id/FanTile"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/tileon"
+        android:backgroundTint="#b3ffffff"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.472">
+
+        <RelativeLayout
+            android:id="@+id/fanCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ellipse_6"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fan"
+                android:id="@+id/fanIcon"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#189bfa"
+            android:textSize="28sp"
+            android:id="@+id/fanStr"
+            android:fontFamily="@font/roboto"
+            android:text="@string/fanStr"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/fanSwitch"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
+            android:checked="false"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+<!--   Watering tile -->
+
+    <RelativeLayout
+        android:id="@+id/WaterTile"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/tileon"
+        android:backgroundTint="#b3ffffff"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8">
+
+        <RelativeLayout
+            android:id="@+id/waterCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ellipse_6"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/water"
+                android:id="@+id/waterIcon"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#189bfa"
+            android:textSize="28sp"
+            android:id="@+id/waterStr"
+            android:fontFamily="@font/roboto"
+            android:text="@string/wateringStr"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/waterSwitch"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
+            android:checked="false"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+<!--  Curtain tile  -->
+    <RelativeLayout
+        android:id="@+id/CurtainTile"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/tileon"
+        android:backgroundTint="#ffffffff"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8">
+
+        <RelativeLayout
+            android:id="@+id/curtainCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ellipse_6"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curtain"
+                android:id="@+id/curtainIcon"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="8dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#189bfa"
+            android:textSize="28sp"
+            android:id="@+id/curtainStr"
+            android:fontFamily="@font/roboto"
+            android:text="@string/curtain"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/curtainSwitch"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
+            android:checked="true"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
