@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Smarthome</string>
+    <string name="LoginName">Tên đăng nhập</string>
+    <string name="LoginPass">Mật khẩu</string>
+    <string name="RememberPass">Nhớ mật khẩu</string>
+    <string name="Login">Đăng nhập</string>
+    <string name="Register">Đăng ký</string>
+    <string name="homeBot">Homebot</string>
+    <string name="wrongPass">Sai mật khẩu</string>
+    <string name="notExist">Không tồn tại</string>
+    <string name="hiUser">Chào bạn!</string>
+    <string name="temp">29°C</string>
+    <string name="humid">50%</string>
+    <string name="lamp">Đèn</string>
+    <string name="fanStr">Quạt</string>
+    <string name="wateringStr">Tưới cây</string>
+    <string name="curtain">Rèm</string>
+    <string name="today">Today</string>
+</resources>
