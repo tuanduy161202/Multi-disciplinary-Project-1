@@ -16,4 +16,5 @@
     <string name="wateringStr">Tưới cây</string>
     <string name="curtain">Rèm</string>
     <string name="today">Today</string>
+    <string name="email">Email</string>
 </resources>
