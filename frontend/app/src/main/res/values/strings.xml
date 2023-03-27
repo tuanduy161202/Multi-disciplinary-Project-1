@@ -17,4 +17,7 @@
     <string name="curtain">Rèm</string>
     <string name="today">Today</string>
     <string name="email">Email</string>
+    <string name="areYouSure">Bạn có chắc không?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

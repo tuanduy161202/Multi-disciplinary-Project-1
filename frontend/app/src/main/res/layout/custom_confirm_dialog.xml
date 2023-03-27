@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/deleteOrNot"
+    android:layout_width="269dp"
+    android:layout_height="155dp"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/tileon"
+    android:backgroundTint="#ffffffff"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/areYouSure"
+        android:textSize="25sp"
+        android:fontFamily="@font/roboto"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="105dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:id="@+id/yes_delete"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#0d529a"
+        app:cardCornerRadius="40dp"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/yes"
+            android:textColor="@color/white"
+            android:textSize="25sp"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="105dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="17dp"
+        android:id="@+id/no_delete"
+        android:clickable="true"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#abafb4"
+        app:cardCornerRadius="40dp"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/no"
+            android:textColor="@color/white"
+            android:textSize="25sp"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
