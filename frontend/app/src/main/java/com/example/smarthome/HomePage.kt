@@ -2,6 +2,7 @@ package com.example.smarthome
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -240,6 +241,8 @@ class HomePage : AppCompatActivity() {
 
         listCommandButton.setOnClickListener {
             //TODO: chuyen man hinh
+            val intent = Intent(this, CommandList::class.java)
+            startActivity(intent)
         }
 
         //TODO: update temperature and humidity

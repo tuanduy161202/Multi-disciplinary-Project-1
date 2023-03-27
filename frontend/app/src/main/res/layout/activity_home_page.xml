@@ -205,47 +205,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.472">
 
-    <RelativeLayout
-        android:id="@+id/lampCircle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ellipse_6"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        >
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/lampCircle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/lamp"
-            android:id="@+id/lampIcon"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            />
-    </RelativeLayout>
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ellipse_6">
+
+            <ImageView
+                android:id="@+id/lampIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/lamp" />
+        </RelativeLayout>
+
         <TextView
+            android:id="@+id/lampStr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#189bfa"
-            android:textSize="28sp"
-            android:id="@+id/lampStr"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="80dp"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/roboto"
             android:text="@string/lamp"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="10dp"
-            android:clickable="true"
-            android:focusable="true" />
+            android:textColor="#189bfa"
+            android:textSize="28sp" />
 
         <Switch
+            android:id="@+id/lampSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginTop="15dp"
-            android:id="@+id/lampSwitch"
+            android:checked="true"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
             android:thumb="@drawable/thumb"
             android:track="@drawable/track"
-            android:scaleY="1.2"
-            android:scaleX="1.2"
-            android:checked="true"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     </RelativeLayout>
