@@ -31,14 +31,14 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class HouseSerializer(serializers.ModelSerializer):
-    device_listing = serializers.HyperlinkedIdentityField(
-        view_name='houses:device_list', lookup_field='pk')
-    sensor_data_listing = serializers.HyperlinkedIdentityField(
-        view_name='houses:sensor_data_list', lookup_field='pk')
-    intent_listing = serializers.HyperlinkedIdentityField(
-        view_name='chatbot:intent_list', lookup_field='pk')
-    command_listing = serializers.HyperlinkedIdentityField(
-        view_name='chatbot:command_list', lookup_field='pk')
+    # device_listing = serializers.HyperlinkedIdentityField(
+    #     view_name='houses:device_list')
+    # sensor_data_listing = serializers.HyperlinkedIdentityField(
+    #     view_name='houses:sensor_data_list', lookup_field='pk')
+    # intent_listing = serializers.HyperlinkedIdentityField(
+    #     view_name='chatbot:intent_list', lookup_field='pk')
+    # command_listing = serializers.HyperlinkedIdentityField(
+    #     view_name='chatbot:command_list', lookup_field='pk')
 
     class Meta:
         model = House
