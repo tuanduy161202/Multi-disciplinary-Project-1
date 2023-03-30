@@ -20,4 +20,5 @@
     <string name="areYouSure">Bạn có chắc không?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="enterCommnad">Điền câu lệnh</string>
 </resources>

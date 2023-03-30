@@ -1,24 +1,23 @@
 package com.example.smarthome
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.view.Window
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class CommandList : AppCompatActivity() {
 
+    //Bien man hinh command list
     private lateinit var btnAddTask:ImageButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var commandList:ArrayList<Command>
@@ -28,12 +27,15 @@ class CommandList : AppCompatActivity() {
     private lateinit var noButton:CardView
     private lateinit var dialog:Dialog
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.command_list)
 
         btnAddTask = findViewById(R.id.addTask)
         btnBack = findViewById(R.id.backToHomeFromCommandList)
+
 
         recyclerView = findViewById(R.id.recycle)
         recyclerView.setHasFixedSize(true)
@@ -54,12 +56,36 @@ class CommandList : AppCompatActivity() {
         recyclerView.adapter = commandAdapter
 
 
+        //Intent launcher cho edit command
+        val intentLauncher0 =
+            registerForActivityResult(PostActivityContract()) { result ->
+                if (result != null){
+                    val editedCommand = result.getParcelable<Command>("editedCommand")
+                    val position = result.getInt("returnPosition")
+                    Log.e("anv0", "$editedCommand")
+                    if (editedCommand != null){
+                        Log.e("anv", "$editedCommand")
+                        commandAdapter.CommandList[position] = editedCommand
+                        commandAdapter.notifyItemChanged(position)
+                    }
+                }
+
+            }
+
 
         commandAdapter.onItemClick = {
-            val intent = Intent(this, EditCommand::class.java)
-            intent.putExtra("NeedEditCommand", it)
-            startActivity(intent)
+            val bun = Bundle()
+            bun.putParcelable("commandNeed", commandAdapter.CommandList[it])
+            bun.putInt("positionNeed", it)
+            Log.e("checkTag", "com: ${commandAdapter.CommandList[it]}  $it    $bun")
+            intentLauncher0.launch(bun)
+//            val intent = Intent(this, EditCommand::class.java)
+//            intent.putExtra("position", it)
+//            intent.putExtra("commandNeedEdit", commandAdapter.CommandList[it])
+//            intentLauncher0.launch(intent)
         }
+
+
 
         commandAdapter.onTrashClick = {
             //Xoa command va hien man hinh are you sure
@@ -86,16 +112,32 @@ class CommandList : AppCompatActivity() {
         }
 
 
+
         btnBack.setOnClickListener {
             val next = Intent(this, HomePage::class.java)
             startActivity(next)
         }
 
+        val intentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val newCommand = result.data?.getParcelableExtra<Command>("newCommand")
+                    if (newCommand != null){
 
-        btnAddTask.setOnClickListener{
-            val nextPage = Intent(this, AddCmd::class.java)
-            startActivity(nextPage)
+                        commandAdapter.CommandList.add(newCommand)
+                        commandAdapter.notifyItemInserted(commandAdapter.CommandList.size)
+                        Log.i("addcmd", "Them ${newCommand.text}")
+                    }
+
+                }
+
+            }
+
+        btnAddTask.setOnClickListener {
+            val intent = Intent(this, AddCmd::class.java)
+            intentLauncher.launch(intent)
+
         }
 
 
