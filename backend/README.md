@@ -26,3 +26,28 @@ password: admin
 Go to http://127.0.0.1:8000/admin/ to acess admin dashboard
 
 ## API documentation
+
+### Homepage
+```python
+Method='GET'
+URL=''
+```
+
+### Obtain API Token 
+```python
+Method='POST'
+URL='/auth'
+body= {
+    username: 'duy',
+    password: 'smarthomeuser'
+}
+```
+
+### Home Detail
+```python
+Method='POST'
+URL='/house/'
+header= {
+    Authorization: f'Token {yourtoken}'
+}
+```

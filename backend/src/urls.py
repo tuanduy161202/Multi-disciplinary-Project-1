@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.authtoken.views import obtain_auth_token
+
 urlpatterns = [
     path('', include('home.urls')),
-    path('houses/', include('houses.urls')),
+    path('auth', obtain_auth_token),
+    path('house/', include('houses.urls')),
     path('chatbot/', include('chatbot.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -31,8 +31,6 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class HouseSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='houses:house_detail', lookup_field='pk')
     device_listing = serializers.HyperlinkedIdentityField(
         view_name='houses:device_list', lookup_field='pk')
     sensor_data_listing = serializers.HyperlinkedIdentityField(
