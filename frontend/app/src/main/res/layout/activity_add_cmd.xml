@@ -1,144 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCmd"
-    android:background="@drawable/bg_main">
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
+    android:id="@+id/comm_list"
+    tools:context=".CommandList"
+    android:background="@drawable/background"
+    >
+
+    <ImageButton
+        android:id="@+id/backFromAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/back"
+        android:layout_marginTop="26dp"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="230dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/tileon"
+        android:backgroundTint="@color/white"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleIntents"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/back">
-        </ImageView>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-        <ImageView
-            android:id="@+id/addTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/plus"
-            android:layout_gravity="end">
-        </ImageView>
-    </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="22dp" />
+    </RelativeLayout>
+
+
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/bg_cmd"
-        android:drawableRight="@drawable/pen"
+        android:id="@+id/editTextCommand"
+        android:layout_width="360dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="106dp"
+        android:background="@drawable/tileon"
+        android:backgroundTint="@color/white"
+        android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="Type new command"
-        android:paddingLeft="16dp"
-        android:paddingRight="10dp"
-        android:textSize="18sp"
+        android:hint="@string/enterCommnad"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.161" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="38dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginTop="45dp"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176"
+        app:srcCompat="@drawable/mdi_pencil" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_cmd"
-            android:drawableRight="@drawable/pin"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Bật đèn"
-            android:textColor="#000000"
-            android:textFontWeight="1000"
-            android:textSize="25sp"></TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_cmd"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Tắt đèn"
-            android:textColor="#000000"
-            android:textFontWeight="1000"
-            android:textSize="25sp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_cmd"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Bật quạt"
-            android:textColor="#000000"
-            android:textFontWeight="1000"
-            android:textSize="25sp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_cmd"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Tắt quạt"
-            android:textColor="#000000"
-            android:textFontWeight="1000"
-            android:textSize="25sp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_cmd"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Tưới cây"
-            android:textColor="#000000"
-            android:textFontWeight="1000"
-            android:textSize="25sp"></TextView>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

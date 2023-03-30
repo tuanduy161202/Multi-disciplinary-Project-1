@@ -1,19 +1,15 @@
 package com.example.smarthome
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageButton
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class CommandAdapter(var CommandList:ArrayList<Command>):RecyclerView.Adapter<CommandAdapter.CommandViewHolder>(){
 
-    var onItemClick:((Command) -> Unit)? = null
+    var onItemClick:((Int) -> Unit)? = null
     var onTrashClick:((Int) -> Unit)? = null
 
     inner class CommandViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
@@ -38,7 +34,7 @@ class CommandAdapter(var CommandList:ArrayList<Command>):RecyclerView.Adapter<Co
 
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(command)
+            onItemClick?.invoke(holder.adapterPosition)
         }
 
         holder.itemView.findViewById<ImageButton>(R.id.trashButton).setOnClickListener {
