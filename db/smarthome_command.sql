@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `command`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `command` (
-  `command_id` int unsigned NOT NULL,
+  `command_id` int unsigned NOT NULL AUTO_INCREMENT,
   `house_id` int unsigned NOT NULL,
   `intent_name` varchar(255) NOT NULL,
   `text` longtext NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `command` (
   KEY `intentName_idx` (`intent_name`),
   CONSTRAINT `id_house` FOREIGN KEY (`house_id`) REFERENCES `house` (`house_id`),
   CONSTRAINT `intentName` FOREIGN KEY (`intent_name`) REFERENCES `intent` (`intent_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 16:40:19
+-- Dump completed on 2023-03-30 11:53:02
