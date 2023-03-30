@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `id` bigint NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -31,13 +31,13 @@ CREATE TABLE `account` (
   `is_superuser` tinyint(1) NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6),
-  `house_id` int unsigned,
-  `last_login` datetime(6),
+  `date_joined` datetime(6) DEFAULT NULL,
+  `house_id` int unsigned DEFAULT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `houseID_idx` (`house_id`),
   CONSTRAINT `idhouse` FOREIGN KEY (`house_id`) REFERENCES `house` (`house_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'duy','abcd','Duy','duy@gmail.com',1,0,1,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000'),(2,'hung','abcd','Hung','hung@gmail.com',1,0,0,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000');
+INSERT INTO `account` VALUES (1,'duy','pbkdf2_sha256$390000$v9qpkXgN79ClzUa63VJm1m$bLk024RdcJ4GB24e+2rwqyx1q9kBDFjmE380oAlRVCU=','Duy','duy@gmail.com',1,0,1,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000'),(2,'hung','pbkdf2_sha256$390000$v9qpkXgN79ClzUa63VJm1m$bLk024RdcJ4GB24e+2rwqyx1q9kBDFjmE380oAlRVCU=','Hung','hung@gmail.com',1,0,0,'2023-01-01 00:00:00.000000',1,'2023-01-01 00:00:00.000000');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 16:40:18
+-- Dump completed on 2023-03-30 11:53:02
