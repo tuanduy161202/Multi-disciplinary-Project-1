@@ -6,18 +6,22 @@ intents:
   - thanks
   - turn_on_light
   - turn_off_light
+  - turn_on_fan
+  - turn_off_fan
+  - turn_on_water
+  - turn_off_water
   - weather_forecast
 
 entities:
-  - no_lights
+  - no_device
   - city
 
 slots:
-  no_lights:
-    type: any
+  no_device:
+    type: list
     mappings:
     - type: from_entity
-      entity: no_lights
+      entity: no_device
   city:
     type: any
     mappings:
@@ -29,12 +33,9 @@ responses:
   - text: Rasa đây, bạn cần giúp gì không?
   utter_goodbye:
   - text: Tạm biệt bạn
-  utter_turn_on_light:
-  - text: Xác nhận bật đèn số {no_lights}.
-  utter_turn_off_light:
-  - text: Xác nhận tắt đèn số {no_lights}.
 actions:
 - action_weather_forecast
+- action_control_device
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

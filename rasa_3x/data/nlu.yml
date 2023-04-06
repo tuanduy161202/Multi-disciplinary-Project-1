@@ -2,9 +2,74 @@ version: "3.1"
 
 nlu:
 
-- regex: no_lights
+- regex: no_device
   examples: |
     - \d
+
+- lookup: city
+  examples: |
+    - An Giang
+    - Bà Rịa Vũng Tàu
+    - Bạc Liêu
+    - Bắc Giang
+    - Bắc Kạn
+    - Bến Tre
+    - Bình Dương
+    - Bình Định
+    - Bình Phước
+    - Bình Thuận
+    - Cà Mau
+    - Cao Bằng
+    - Cần Thơ
+    - Đà Nẵng
+    - Đắk Lắk
+    - Đắk Nông
+    - Điện Biên
+    - Đồng Nai
+    - Đồng Tháp
+    - Gia Lai
+    - Hà Giang
+    - Hà Nam
+    - Hà Nội
+    - Hà Tĩnh
+    - Hải Dương
+    - Hải Phòng
+    - Hậu Giang
+    - Hòa Bình
+    - Hưng Yên
+    - Khánh Hòa
+    - Kiên Giang
+    - Kon Tum
+    - Lai Châu
+    - Lạng Sơn
+    - Lào Cai
+    - Lâm Đồng
+    - Long An
+    - Nam Định
+    - Nghệ An
+    - Ninh Bình
+    - Ninh Thuận
+    - Phú Thọ
+    - Phú Yên
+    - Quảng Bình
+    - Quảng Nam
+    - Quảng Ngãi
+    - Quảng Ninh
+    - Quảng Trị
+    - Sóc Trăng
+    - Sơn La
+    - Tây Ninh
+    - Thái Bình
+    - Thái Nguyên
+    - Thanh Hóa
+    - Thừa Thiên Huế
+    - Tiền Giang
+    - Thành phố Hồ Chí Minh
+    - Trà Vinh
+    - Tuyên Quang
+    - Vĩnh Long
+    - Vĩnh Phúc
+    - Yên Bái
 
 - intent: greet
   examples: |
@@ -42,19 +107,68 @@ nlu:
     - ok rồi
 - intent: turn_on_light
   examples: |
-    - mở đèn số [1](no_lights) cho tôi
-    - tối quá, mở đèn số [2](no_lights) cho tôi đi
-    - rasa bật đèn số [3](no_lights) giúp tui với
-    - bật đèn số [4](no_lights) đi
-    - bật thêm đèn số [5](no_lights) đi
+    - Bật đèn lên
+    - Bật hết đèn lên
+    - Cho nhà sáng lên đi
+    - mở đèn số [1](no_device) cho tôi
+    - tối quá, mở đèn số [2](no_device) cho tôi đi
+    - rasa bật đèn số [3](no_device) giúp tui với
+    - bật đèn số [4](no_device) đi
+    - mở đèn số [5](no_device), [2](no_device) và [3](no_device) đi
 
 - intent: turn_off_light
   examples: |
-    - tắt đèn số [1](no_lights) cho tôi
-    - tắt đèn số [2](no_lights) cho tôi đi
-    - rasa tắt đèn số [3](no_lights) giúp tui với
-    - tắt đèn số [4](no_lights) đi
-    - tắt đèn số [5](no_lights) đi
+    - tắt đèn đi
+    - tắt hết đèn đi
+    - tắt đèn đi ngủ thôi
+    - tắt đèn số [1](no_device) cho tôi
+    - tắt đèn số [2](no_device) cho tôi đi
+    - rasa tắt đèn số [3](no_device) giúp tui với
+    - tắt đèn số [4](no_device) đi
+    - tắt đèn số [5](no_device), [2](no_device) và [3](no_device) đi
+
+- intent: turn_on_fan
+  examples: |
+    - bật hết quạt đi
+    - mở hết quạt lên
+    - mở quạt số [1](no_device) cho tôi
+    - nóng quá, mở quạt số [2](no_device) cho tôi đi
+    - rasa bật quạt số [3](no_device) giúp tui với
+    - bật quạt số [4](no_device) đi
+    - bật quạt số [5](no_device), [2](no_device) và [3](no_device) đi
+
+- intent: turn_off_fan
+  examples: |
+    - tắt hết quạt đi
+    - lạnh quá, tắt quạt
+    - tắt quạt số [1](no_device) cho tôi
+    - tắt quạt số [2](no_device) cho tôi đi
+    - rasa tắt quạt số [3](no_device) giúp tui với
+    - tắt quạt số [4](no_device) đi
+    - tắt quạt số [5](no_device), [2](no_device) và [3](no_device) đi
+
+- intent: turn_on_water
+  examples: |
+    - mở vòi nước hết đi
+    - mở hết vòi nước đi
+    - tưới cây nào
+    - mở vòi số [1](no_device) cho tôi
+    - mở vòi nước số [2](no_device) cho tôi đi
+    - rasa bật vòi số [3](no_device) giúp tui với
+    - bật vòi nước số [4](no_device) đi
+    - bật các vòi số [5](no_device), [2](no_device) và [3](no_device) đi
+
+- intent: turn_off_water
+  examples: |
+    - tắt hết vòi nước đi
+    - tắt vòi nước
+    - ngừng tưới cây đi
+    - ngưng tưới cây
+    - tắt vòi số [1](no_device) cho tôi
+    - tắt vòi số [2](no_device) cho tôi đi
+    - rasa tắt vòi nước số [3](no_device) giúp tui với
+    - tắt vòi nước số [4](no_device) đi
+    - tắt các vòi số [5](no_device), [2](no_device) và [3](no_device) đi
 
 - intent: weather_forecast
   examples: |
@@ -62,3 +176,6 @@ nlu:
     - Đưa tôi dự báo thời tiết tại [Thành phố Hồ Chính Minh](city)
     - Dự báo thời tiết của [Cần Thơ](city) trong những ngày tới
     - Thời tiết của [Hậu Giang](city) sắp tới như thế nào?
+    - Sắp tới thời tiết [Hà Giang](city) ra sao vậy?
+    - Vài ngày nữa thời tiết [Tiền Giang](city) ra sao vậy?
+    - Dự báo thời tiết của (Bình Định)(city) trong thời gian tới.

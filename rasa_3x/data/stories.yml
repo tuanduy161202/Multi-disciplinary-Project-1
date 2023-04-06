@@ -6,20 +6,28 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-- story: Turn on lights
+- story: Control device
   steps:
-  - intent: turn_on_light
-    entities:
-    - no_lights
-  - action: utter_turn_on_light
-  - intent: thanks
-  - action: utter_goodbye
-- story: Turn of lights
-  steps:
-  - intent: turn_off_light
-    entities:
-    - no_lights
-  - action: utter_turn_off_light
+  - or:
+    - intent: turn_on_light
+      entities:
+      - no_device
+    - intent: turn_off_light
+      entities:
+      - no_device
+    - intent: turn_on_fan
+      entities:
+      - no_device
+    - intent: turn_off_fan
+      entities:
+      - no_device
+    - intent: turn_on_water
+      entities:
+      - no_device
+    - intent: turn_off_water
+      entities:
+      - no_device
+  - action: action_control_device
   - intent: thanks
   - action: utter_goodbye
 - story: Ask for weahter forecast
