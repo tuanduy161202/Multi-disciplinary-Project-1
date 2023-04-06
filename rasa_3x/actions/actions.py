@@ -50,3 +50,36 @@ class ActionWeatherForecast(Action):
               text = f"- Ngày {date}:\n\t Nhiệt độ trung bình: {avgtemp}.\n\t Độ ẩm trung bình: {avghumidity}.\n\t Dự đoán: {condition}.\n"
               forecast_text += text
             dispatcher.utter_message(forecast_text)
+class ActionControlDevice(Action):
+
+    def name(self) -> Text:
+        return "action_control_device"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = tracker.latest_message['intent'].get('name')
+        if 'turn_' in message:
+            on_off = 'tắt'
+            if '_on_' in message:
+                on_off = 'bật'
+            device_name = ''
+            if '_light' in message:
+                device_name = 'đèn'
+            elif '_fan' in message:
+                device_name = 'quạt'
+            elif '_water' in message:
+                device_name = 'vòi nước'
+            no_device = tracker.get_slot('no_device')
+            if len(no_device) == 0:
+                dispatcher.utter_message(f'Xác nhận {on_off} tất cả {device_name}')
+                return
+            text = f'Xác nhận {on_off} {device_name} số '
+            first = True
+            for num in no_device:
+                if not first:
+                    text += ', '
+                text += num
+                first = False
+            dispatcher.utter_message(text + '.')
