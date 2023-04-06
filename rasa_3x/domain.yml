@@ -1,0 +1,40 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - thanks
+  - turn_on_light
+  - turn_off_light
+  - weather_forecast
+
+entities:
+  - no_lights
+  - city
+
+slots:
+  no_lights:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: no_lights
+  city:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: city
+
+responses:
+  utter_greet:
+  - text: Rasa đây, bạn cần giúp gì không?
+  utter_goodbye:
+  - text: Tạm biệt bạn
+  utter_turn_on_light:
+  - text: Xác nhận bật đèn số {no_lights}.
+  utter_turn_off_light:
+  - text: Xác nhận tắt đèn số {no_lights}.
+actions:
+- action_weather_forecast
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

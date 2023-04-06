@@ -1,0 +1,64 @@
+version: "3.1"
+
+nlu:
+
+- regex: no_lights
+  examples: |
+    - \d
+
+- intent: greet
+  examples: |
+    - xin chào
+    - chào Rasa
+    - hello
+    - hi
+    - hé lô
+    - ê Rasa
+    - rasa ồ
+    - rasa ơi
+    - giúp tôi được không, Rasa
+
+- intent: goodbye
+  examples: |
+    - bye nhe
+    - bye
+    - goodbye
+    - tạm biệt
+    - hẹn gặp lại
+    - gặp lại sau
+    - ok rồi nhé
+    - xong rồi nhe
+    - ổn rồi
+    - bái bai
+    - see you again
+    - see you later
+
+- intent: thanks
+  examples: |
+    - cảm ơn nhé
+    - cảm ơn rasa nhiều nhé
+    - cám ơn
+    - đa tạ
+    - ok rồi
+- intent: turn_on_light
+  examples: |
+    - mở đèn số [1](no_lights) cho tôi
+    - tối quá, mở đèn số [2](no_lights) cho tôi đi
+    - rasa bật đèn số [3](no_lights) giúp tui với
+    - bật đèn số [4](no_lights) đi
+    - bật thêm đèn số [5](no_lights) đi
+
+- intent: turn_off_light
+  examples: |
+    - tắt đèn số [1](no_lights) cho tôi
+    - tắt đèn số [2](no_lights) cho tôi đi
+    - rasa tắt đèn số [3](no_lights) giúp tui với
+    - tắt đèn số [4](no_lights) đi
+    - tắt đèn số [5](no_lights) đi
+
+- intent: weather_forecast
+  examples: |
+    - dự báo thời tiết tại [Hà Nội](city)
+    - Đưa tôi dự báo thời tiết tại [Thành phố Hồ Chính Minh](city)
+    - Dự báo thời tiết của [Cần Thơ](city) trong những ngày tới
+    - Thời tiết của [Hậu Giang](city) sắp tới như thế nào?
