@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'smarthome',
         'USER': 'root', # your db username
-        'PASSWORD': 'duy16122002',   # your db password
+        'PASSWORD': '123456',   # your db password
         'PORT': '3306',
         'HOST': '127.0.0.1', # local host
         'OPTIONS': {  
