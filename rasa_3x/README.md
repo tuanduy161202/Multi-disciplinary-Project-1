@@ -44,5 +44,5 @@ rasa shell
 ```
 
 Optional arguments:
-- `--model': specific model_path
-- `--endpoint': specific endpoint_path
+- `--model`: specific model_path
+- `--endpoint`: specific endpoint_path
