@@ -1,0 +1,32 @@
+version: "3.1"
+
+stories:
+
+- story: Greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+- story: Turn on lights
+  steps:
+  - intent: turn_on_light
+    entities:
+    - no_lights
+  - action: utter_turn_on_light
+  - intent: thanks
+  - action: utter_goodbye
+- story: Turn of lights
+  steps:
+  - intent: turn_off_light
+    entities:
+    - no_lights
+  - action: utter_turn_off_light
+  - intent: thanks
+  - action: utter_goodbye
+- story: Ask for weahter forecast
+  steps:
+  - intent: weather_forecast
+    entities:
+    - city
+  - action: action_weather_forecast
+  - intent: thanks
+  - action: utter_goodbye
