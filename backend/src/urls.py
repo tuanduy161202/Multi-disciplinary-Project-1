@@ -23,5 +23,5 @@ urlpatterns = [
     path('auth', obtain_auth_token),
     path('house/', include('houses.urls')),
     path('chatbot/', include('chatbot.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),    
 ]
