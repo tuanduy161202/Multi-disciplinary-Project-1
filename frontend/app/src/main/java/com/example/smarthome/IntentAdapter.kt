@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class IntentAdapter(var IntentList:ArrayList<IntentClass>):RecyclerView.Adapter<IntentAdapter.IntentViewHolder>(){
-
+class IntentAdapter():RecyclerView.Adapter<IntentAdapter.IntentViewHolder>(){
+    var IntentList:ArrayList<IntentClass> = ArrayList()
     var onIntentClick:((Int) -> Unit)? = null
     var selected = -1
 

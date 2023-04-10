@@ -46,7 +46,18 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig', 
     'houses.apps.HousesConfig',
     'chatbot.apps.ChatbotConfig',
+    'channels',
+
+
 ]
+
+ASGI_APPLICATION = 'src.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +87,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'src.wsgi.application'
+# WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database

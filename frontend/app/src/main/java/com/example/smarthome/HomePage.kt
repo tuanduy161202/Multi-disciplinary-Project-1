@@ -12,11 +12,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.serialization.json.*
+import kotlinx.serialization.*
+import okhttp3.*
 
 class HomePage : AppCompatActivity() {
     //User button
-    private lateinit var user:ImageButton
+    private lateinit var user:ImageView
 
     //Action bar button
     private lateinit var chatBotButton:ImageButton
@@ -51,10 +55,60 @@ class HomePage : AppCompatActivity() {
     private lateinit var phut:String
     private lateinit var giay:String
 
+    private val viewModel:SharedViewModel by lazy {
+        ViewModelProvider(this)[SharedViewModel::class.java]
+    }
+
+
+    inner class WebsocketListener: WebSocketListener() {
+
+        override fun onOpen(webSocket: WebSocket, response: Response) {
+            super.onOpen(webSocket, response)
+            Log.e("socket-ok", "connected")
+        }
+
+
+        override fun onMessage(webSocket: WebSocket, text: String) {
+//        super.onMessage(webSocket, text)
+            Log.e("socket-ok", text)
+            val data = Json.decodeFromString<SocketData>(text)
+            if (data.type == "sensor_data"){
+                humid.text = data.humid_data.toString().plus("%")
+                temp.text = data.temp_data.toString().plus("°C")
+                Log.e("setData", "${humid.text} and ${temp.text}")
+            }
+
+            else{
+                humid.text = data.humid_data.toString().plus("%")
+                temp.text = data.temp_data.toString().plus("°C")
+                Log.e("setData", "handshake ${humid.text} and ${temp.text}")
+            }
+
+
+
+
+        }
+
+        override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+//        super.onClosing(webSocket, code, reason)
+            webSocket.close(1000, null)
+            Log.e("socket-ok", "$code - $reason")
+        }
+
+        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+//        super.onFailure(webSocket, t, response)
+            Log.e("socket-ok", "${t.message}")
+        }
+
+
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
 
+        user = findViewById(R.id.user)
 
         lampSwitch = findViewById(R.id.lampSwitch)
         fanSwitch = findViewById(R.id.fanSwitch)
@@ -75,8 +129,26 @@ class HomePage : AppCompatActivity() {
         temp = findViewById(R.id.temp)
         humid = findViewById(R.id.humid)
 
+
         sf = getSharedPreferences("my_sf", MODE_PRIVATE)
         editor = sf.edit()
+
+        val request = Request.Builder().url("ws://10.0.2.2:8000/ws/socket-server/").build()
+        val listener = WebsocketListener()
+        val client = OkHttpClient()
+        val ws:WebSocket = client.newWebSocket(request, listener)
+
+
+
+        user.setOnClickListener {
+            val inten = Intent(this, UserProfile::class.java)
+            val username = intent.getStringExtra("username")
+            val pass = intent.getStringExtra("password")
+            inten.putExtra("username", username)
+            inten.putExtra("password", pass)
+            startActivity(inten)
+        }
+
 
         lampSwitch.setOnClickListener{
             if (lampSwitch.isChecked){
@@ -241,8 +313,12 @@ class HomePage : AppCompatActivity() {
 
         listCommandButton.setOnClickListener {
             //TODO: chuyen man hinh
-            val intent = Intent(this, CommandList::class.java)
-            startActivity(intent)
+            val tokenStr:String = intent.getStringExtra("TokenStr")!!
+            val inten = Intent(this, CommandList::class.java)
+            inten.putExtra("tokenStr", tokenStr)
+//            Log.e("contisend", tokenStr)
+            Log.e("kafka", "startactivity")
+            startActivity(inten)
         }
 
         //TODO: update temperature and humidity
