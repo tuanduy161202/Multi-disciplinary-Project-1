@@ -7,8 +7,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CommandAdapter(var CommandList:ArrayList<Command>):RecyclerView.Adapter<CommandAdapter.CommandViewHolder>(){
-
+class CommandAdapter():RecyclerView.Adapter<CommandAdapter.CommandViewHolder>(){
+    var CommandList:ArrayList<Command> = ArrayList()
     var onItemClick:((Int) -> Unit)? = null
     var onTrashClick:((Int) -> Unit)? = null
 

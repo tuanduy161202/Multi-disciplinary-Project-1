@@ -1,3 +1,3 @@
 package com.example.smarthome
 
-data class Token()
+data class Token(val token:String)

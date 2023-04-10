@@ -4,10 +4,14 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sf:SharedPreferences
@@ -16,9 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userName:EditText
     private lateinit var passWord:EditText
     private lateinit var checkbox:CheckBox
-    private lateinit var register:TextView
-    private lateinit var wrongName:TextView
-    private lateinit var wrongPass:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         userName = findViewById(R.id.EditTextName)
         passWord = findViewById(R.id.EditTextPass)
         checkbox = findViewById(R.id.checkBox)
-        register = findViewById((R.id.textViewRegister))
 
 
 
@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity() {
             val name = userName.text.toString()
             val pass = passWord.text.toString()
             if (isEntered(name, pass)){     //Kiem tra them tai khoan sai hay dung
-                //TODO: Dang nhap chuyen sang home page
-                val intent = Intent(this, HomePage::class.java)
-                startActivity(intent)
+                postLogin(name, pass)
             }
 
 
@@ -62,9 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        register.setOnClickListener {
-            //TODO
-        }
+
     }
 
     override fun onResume() {
@@ -103,5 +99,29 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
         return flag
+    }
+
+    private fun postLogin(name: String, pass: String){
+        val author = Authorization(name, pass)
+        val retrofit = ServiceBuilder.getretrofit().create(APIInterface::class.java)
+        retrofit.postUserLogin(author).enqueue(object : Callback<Token> {
+            override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                val res = response.body()
+                if (res != null){
+                    val intent = Intent(this@MainActivity, HomePage::class.java)
+                    intent.putExtra("TokenStr", res.token)
+                    intent.putExtra("username", name)
+                    intent.putExtra("password", pass)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(this@MainActivity, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Token?>, t: Throwable?) {
+
+            }
+        })
     }
 }
