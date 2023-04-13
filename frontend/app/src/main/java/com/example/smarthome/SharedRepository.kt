@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import retrofit2.create
 
 class SharedRepository {
+
     suspend fun getCommandList(token:String):ArrayList<Command>?{
         val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).getCommandList(token)
 

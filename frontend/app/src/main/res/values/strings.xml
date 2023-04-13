@@ -22,4 +22,7 @@
     <string name="no">No</string>
     <string name="enterCommnad">Điền câu lệnh</string>
     <string name="m_t_kh_u">Mật khẩu</string>
+    <string name="nh_p_tin_y">Nhập tin ở đây</string>
+    <string name="hello_bot">Hello bot</string>
+    <string name="ch_o_b_n">Chào bạn</string>
 </resources>
