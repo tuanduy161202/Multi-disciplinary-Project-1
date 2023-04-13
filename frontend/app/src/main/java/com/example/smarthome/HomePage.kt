@@ -1,5 +1,8 @@
 package com.example.smarthome
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
+import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.serialization.json.*
@@ -54,53 +58,11 @@ class HomePage : AppCompatActivity() {
 
     private lateinit var phut:String
     private lateinit var giay:String
+    lateinit var ws:WebSocket
+    lateinit var animator:ObjectAnimator
 
     private val viewModel:SharedViewModel by lazy {
         ViewModelProvider(this)[SharedViewModel::class.java]
-    }
-
-
-    inner class WebsocketListener: WebSocketListener() {
-
-        override fun onOpen(webSocket: WebSocket, response: Response) {
-            super.onOpen(webSocket, response)
-            Log.e("socket-ok", "connected")
-        }
-
-
-        override fun onMessage(webSocket: WebSocket, text: String) {
-//        super.onMessage(webSocket, text)
-            Log.e("socket-ok", text)
-            val data = Json.decodeFromString<SocketData>(text)
-            if (data.type == "sensor_data"){
-                humid.text = data.humid_data.toString().plus("%")
-                temp.text = data.temp_data.toString().plus("°C")
-                Log.e("setData", "${humid.text} and ${temp.text}")
-            }
-
-            else{
-                humid.text = data.humid_data.toString().plus("%")
-                temp.text = data.temp_data.toString().plus("°C")
-                Log.e("setData", "handshake ${humid.text} and ${temp.text}")
-            }
-
-
-
-
-        }
-
-        override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-//        super.onClosing(webSocket, code, reason)
-            webSocket.close(1000, null)
-            Log.e("socket-ok", "$code - $reason")
-        }
-
-        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-//        super.onFailure(webSocket, t, response)
-            Log.e("socket-ok", "${t.message}")
-        }
-
-
     }
 
 
@@ -134,9 +96,90 @@ class HomePage : AppCompatActivity() {
         editor = sf.edit()
 
         val request = Request.Builder().url("ws://10.0.2.2:8000/ws/socket-server/").build()
-        val listener = WebsocketListener()
+        val listener = WebsocketListener(viewModel)
         val client = OkHttpClient()
-        val ws:WebSocket = client.newWebSocket(request, listener)
+        ws = client.newWebSocket(request, listener)
+        SharedViewModel.socket = ws
+
+
+        viewModel.sensorLiveData.observe(this) { data ->
+            if (data == null) return@observe
+
+            Log.e("socket-okkk", "$data")
+
+            if (data["type"].toString() == "\"sensor_data\"") {
+                humid.text = data["humid_data"].toString().plus("%")
+                temp.text = data["temp_data"].toString().plus("°C")
+                Log.e("setData", "${humid.text} and ${temp.text}")
+            }
+        }
+
+
+        viewModel.statusLiveData.observe(this){data ->
+            if (data == null) return@observe
+
+            if (data["type"].toString() == "\"update_status\""){
+                Log.e("socket-ok", "light ${data["device"]}")
+
+                when (data["device"].toString()){
+                    "\"light\"" -> {
+                        if (data["status"].toString() == "\"on\""){
+                            lampTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
+                            if (!lampSwitch.isChecked) lampSwitch.isChecked = true
+
+                        }
+                        else{
+                            Log.e("backToPhone", "${data["status"].toString()=="\"off\""}")
+                            lampTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
+                            if (lampSwitch.isChecked) lampSwitch.isChecked = false
+                            Log.e("backToPhone", "Cannot see")
+                        }
+                    }
+
+                    "\"fan\"" -> {
+                        if (data["status"].toString() == "\"on\""){
+                            fanTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
+                            if (!fanSwitch.isChecked) fanSwitch.isChecked = true
+                        }
+                        else{
+                            fanTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
+                            if (fanSwitch.isChecked) fanSwitch.isChecked = false
+                        }
+                    }
+
+                    "\"watering\"" -> {
+                        if (data["status"].toString() == "\"on\""){
+                            waterTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
+                            if (!waterSwitch.isChecked) waterSwitch.isChecked = true
+//                            progressBar.visibility = View.VISIBLE
+
+                        }
+                        else{
+                            waterTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
+                            if (waterSwitch.isChecked) waterSwitch.isChecked = false
+//                            progressBar.visibility = View.INVISIBLE
+                        }
+                    }
+
+                    "\"curtain\"" -> {
+                        if (data["status"].toString() == "\"on\""){
+                            curtainTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
+                            if (!curtainSwitch.isChecked) curtainSwitch.isChecked = true
+                        }
+                        else{
+                            curtainTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
+                            if (curtainSwitch.isChecked) curtainSwitch.isChecked = false
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
 
 
 
@@ -154,10 +197,14 @@ class HomePage : AppCompatActivity() {
             if (lampSwitch.isChecked){
                 lampTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
                 //TODO: code bat den
+                val text = "{\"type\": \"turn_on\", \"device\": \"light\"}"
+                ws.send(text)
             }
             else{
                 lampTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
                 //TODO: code tat den
+                val text = "{\"type\": \"turn_off\", \"device\": \"light\"}"
+                ws.send(text)
             }
         }
 
@@ -165,10 +212,14 @@ class HomePage : AppCompatActivity() {
             if (fanSwitch.isChecked){
                 fanTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
                 //TODO: code bat quat
+                val text = "{\"type\": \"turn_on\", \"device\": \"fan\"}"
+                ws.send(text)
             }
             else{
                 fanTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
                 //TODO: code tat quat
+                val text = "{\"type\": \"turn_off\", \"device\": \"fan\"}"
+                ws.send(text)
             }
         }
 
@@ -176,18 +227,34 @@ class HomePage : AppCompatActivity() {
             if (waterSwitch.isChecked){
                 waterTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
                 //TODO: code bat tuoi nuoc
+                val text = "{\"type\": \"turn_on\", \"device\": \"watering\"}"
+                ws.send(text)
 
 
-                progressBar.visibility = View.VISIBLE
-                progressBar.max = 100
-                var curr = 60
-                var duration:Long = 60000
-                ObjectAnimator.ofInt(progressBar, "progress", curr).setDuration(duration).start()
+//                progressBar.visibility = View.VISIBLE
+                progressBar.max = toDuration(phut.toInt(), giay.toInt())
+                var curr = progressBar.max
+                var duration:Long = toDuration(phut.toInt(), giay.toInt()).toLong()
+                animator = ObjectAnimator.ofInt(progressBar, "progress", curr).setDuration(duration)
+                animator.doOnEnd {
+                    progressBar.visibility = View.INVISIBLE
+                    if (waterSwitch.isChecked) {
+                        waterSwitch.isChecked = false
+                        waterTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
+                        val endText = "{\"type\": \"turn_off\", \"device\": \"watering\"}"
+                        ws.send(endText)
+                    }
+
+                }
+                animator.start()
             }
             else{
                 waterTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
                 progressBar.visibility = View.INVISIBLE
                 //TODO: code tat tuoi nuoc
+                val text = "{\"type\": \"turn_off\", \"device\": \"watering\"}"
+                ws.send(text)
+                animator.end()
             }
         }
 
@@ -209,6 +276,9 @@ class HomePage : AppCompatActivity() {
             second.text = giay
 
             okButton.setOnClickListener {
+                val text = "{\"type\": \"set_timer\", \"minute\": $phut, \"second\": ${giay.toInt()}}"
+                Log.e("sendText", text)
+                ws.send(text)
                 dialog.dismiss()
             }
 
@@ -287,24 +357,28 @@ class HomePage : AppCompatActivity() {
             if (curtainSwitch.isChecked){
                 curtainTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffffff"))
                 //TODO: code mo rem
+                val text = "{\"type\": \"turn_on\", \"device\": \"curtain\"}"
+                ws.send(text)
             }
             else{
                 curtainTile.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#b3ffffff"))
                 //TODO: code dong rem
+                val text = "{\"type\": \"turn_off\", \"device\": \"curtain\"}"
+                ws.send(text)
             }
         }
 
         //Action bar
         chatBotButton.setOnClickListener{
             //TODO: chuyen man hinh
-            //val intent = Intent(this, trang_can_den)
-            //startActivity(intent)
+            val intent = Intent(this, ChatBot::class.java)
+            startActivity(intent)
         }
 
         chartButton.setOnClickListener {
             //TODO: chuyen man hinh
-            //val intent = Intent(this, trang_can_den)
-            //startActivity(intent)
+//            val intent = Intent(this, ChatBot::class.java)
+//            startActivity(intent)
         }
 
         weatherButton.setOnClickListener {

@@ -379,6 +379,7 @@
             android:layout_width="120dp"
             android:layout_height="8dp"
             android:layout_marginStart="10dp"
+            android:backgroundTint="#189bfa"
             android:layout_marginTop="60dp"
         />
     </RelativeLayout>

@@ -19,10 +19,10 @@ class Consumer(WebsocketConsumer):
             'humid_data': -2
         }))
         #TODO: code lay status cua thiet bi ban dau khi mo ung dung
-        light_status = 'on'     #vidu: on
-        fan_status = 'on'
+        light_status = 'off'     #vidu: on
+        fan_status = 'off'
         watering_status = 'off'
-        curtain_status = 'on'
+        curtain_status = 'off'
 
         self.broadcast_status('light', light_status)
         self.broadcast_status('fan', fan_status)
@@ -75,6 +75,11 @@ class Consumer(WebsocketConsumer):
             minute = text_data_json['minute']
             second = text_data_json['second']
             #TODO: code set thoi gian watering do user thay doi 
+
+        elif mess_type == 'chat_message':
+            message = text_data_json['message']
+            #TODO: code nhan va xu ly tin nhan tu nguoi dung
+            
 
     def broadcast(self, temp_data, humid_data):
         async_to_sync(self.channel_layer.group_send)(
