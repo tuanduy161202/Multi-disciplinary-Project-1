@@ -34,39 +34,32 @@ class UIConsumer(WebsocketConsumer):
         if mess_type == 'turn_on':
             device = text_data_json['device']
             if device == 'light':
-                #TODO: code thay doi status va bat den
+                aio.send('led1', 1)
                 self.broadcast_status('light', 'on')
-                pass
             elif device == 'fan':
-                #TODO: code thay doi status va bat quat
+                aio.send('fan', 1)
                 self.broadcast_status('fan', 'on')
-                pass
             elif device == 'watering':
-                #TODO: code thay doi status va bat tuoi cay
+                aio.send('pump', 1)
                 self.broadcast_status('watering', 'on')
-                pass
             elif device == 'curtain':
-                #TODO: code thay doi status va bat keo rem
+                aio.send('hang-clothe', 1)
                 self.broadcast_status('curtain', 'on')
-                pass
 
         elif mess_type == 'turn_off':
             device = text_data_json['device']
             if device == 'light':
-                #TODO: code thay doi status va tat den
+                aio.send('led1', 0)
                 self.broadcast_status('light', 'off')
             elif device == 'fan':
-                #TODO: code thay doi status va tat quat
+                aio.send('fan', 0)
                 self.broadcast_status('fan', 'off')
-                pass
             elif device == 'watering':
-                #TODO: code thay doi status va tat tuoi cay
+                aio.send('pump', 0)
                 self.broadcast_status('watering', 'off')
-                pass
             elif device == 'curtain':
-                #TODO: code thay doi status va tat keo rem
+                aio.send('hang-clothe', 0)
                 self.broadcast_status('curtain', 'off')
-                pass
         
         elif mess_type == 'set_timer':
             minute = text_data_json['minute']
