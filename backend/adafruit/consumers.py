@@ -74,16 +74,16 @@ class UIConsumer(WebsocketConsumer):
             #TODO: code set thoi gian watering do user thay doi 
     
     def init_status(self):
-        self.send_status({'temp_data': aio.receive('temp'), 
+        self.send_data({'temp_data': aio.receive('temp'), 
                           'humid_data': aio.receive('humid')})
-        self.send_data({'device': 'light', 
-                        'status': bin2status(aio.receive('light'))})
-        self.send_data({'device': 'fan', 
+        self.send_status({'device': 'light', 
+                        'status': bin2status(aio.receive('led1'))})
+        self.send_status({'device': 'fan', 
                         'status': bin2status(aio.receive('fan'))})
-        self.send_data({'device': 'watering', 
-                        'status': bin2status(aio.receive('watering'))})
-        self.send_data({'device': 'curtain', 
-                        'status': bin2status(aio.receive('curtain'))})
+        self.send_status({'device': 'watering', 
+                        'status': bin2status(aio.receive('pump'))})
+        self.send_status({'device': 'curtain', 
+                        'status': bin2status(aio.receive('hang-clothe'))})
 
     def send_data(self, event):
         temp_data = event['temp_data']
