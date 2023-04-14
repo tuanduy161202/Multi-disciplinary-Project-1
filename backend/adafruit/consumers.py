@@ -7,7 +7,7 @@ from adafruit import aio
 
 
 def bin2status(b):
-    return 'off' if b == 0 else 'on'
+    return 'off' if b == '0' else 'on'
 
 
 class UIConsumer(WebsocketConsumer):
@@ -67,16 +67,16 @@ class UIConsumer(WebsocketConsumer):
             #TODO: code set thoi gian watering do user thay doi 
     
     def init_status(self):
-        self.send_data({'temp_data': aio.receive('temp'), 
-                          'humid_data': aio.receive('humid')})
+        self.send_data({'temp_data': aio.receive('temp').value, 
+                          'humid_data': aio.receive('humid').value})
         self.send_status({'device': 'light', 
-                        'status': bin2status(aio.receive('led1'))})
+                        'status': bin2status(aio.receive('led1').value)})
         self.send_status({'device': 'fan', 
-                        'status': bin2status(aio.receive('fan'))})
+                        'status': bin2status(aio.receive('fan').value)})
         self.send_status({'device': 'watering', 
-                        'status': bin2status(aio.receive('pump'))})
+                        'status': bin2status(aio.receive('pump').value)})
         self.send_status({'device': 'curtain', 
-                        'status': bin2status(aio.receive('hang-clothe'))})
+                        'status': bin2status(aio.receive('hang-clothe').value)})
 
     def send_data(self, event):
         temp_data = event['temp_data']
