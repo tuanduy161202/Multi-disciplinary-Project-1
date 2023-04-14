@@ -7,6 +7,10 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
+    os.environ.setdefault('AIO_USERNAME', 'halac123b')
+    os.environ.setdefault('AIO_KEY', 'aio_CnrO99NhjfjQVnuY8TeQtIolO4XY')
+    os.environ.setdefault('QUERY_SENSOR_DELAY', '2')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

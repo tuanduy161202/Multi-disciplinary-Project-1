@@ -41,14 +41,13 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'channels',
 
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig', 
     'houses.apps.HousesConfig',
     'chatbot.apps.ChatbotConfig',
-    'channels',
-
-
+    'adafruit.apps.AdafruitConfig'
 ]
 
 ASGI_APPLICATION = 'src.asgi.application'
