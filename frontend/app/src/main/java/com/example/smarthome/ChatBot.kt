@@ -43,18 +43,16 @@ class ChatBot : AppCompatActivity() {
         recyclerView.adapter = chatAdapter
 
 
-        viewModel.messageLiveData.observe(this){data->
-            if (data == null) return@observe
 
-            if (data["type"].toString() == "\"bot_message\""){
-                val chatMessage = ChatMessage(1, data["message"].toString())
-                chatAdapter.chatList.add(chatMessage)
-                chatAdapter.notifyItemInserted(chatAdapter.chatList.size)
-                if (chatAdapter.chatList.size != 0){
-                    recyclerView.visibility = View.VISIBLE
-                }
-            }
-        }
+//        if (data["type"].toString() == "\"bot_message\""){
+//            val chatMessage = ChatMessage(1, data["message"].toString())
+//            chatAdapter.chatList.add(chatMessage)
+//            chatAdapter.notifyItemInserted(chatAdapter.chatList.size)
+//            if (chatAdapter.chatList.size != 0){
+//                recyclerView.visibility = View.VISIBLE
+//            }
+//        }
+
 
 
         sendButton.setOnClickListener {
@@ -62,8 +60,7 @@ class ChatBot : AppCompatActivity() {
                 val chatMessage = ChatMessage(0, editTextMessage.text.toString())
                 chatAdapter.chatList.add(chatMessage)
                 chatAdapter.notifyItemInserted(chatAdapter.chatList.size)
-                val text = "\"type\": \"chat_message\", \"message\": \"${chatMessage.text}\""
-                SharedViewModel.socket.send(editTextMessage.text.toString())
+//                val text = "\"type\": \"chat_message\", \"message\": \"${chatMessage.text}\""
                 editTextMessage.setText("")
             }
             else{
