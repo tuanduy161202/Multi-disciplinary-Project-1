@@ -74,20 +74,6 @@ class CommandList : AppCompatActivity() {
         }
 
 
-//        Log.e("kafka", "what $commandList")
-
-//        commandList = ArrayList()
-//        commandList.add(Command("", 1, "Mở đèn lên cho tôi", "Bật đèn"))
-//        commandList.add(Command("", 2, "Tắt đèn cho tôi", "Tắt đèn"))
-//        commandList.add(Command("", 3, "Bật quạt lên", "Bật quạt"))
-//        commandList.add(Command("", 4, "Tắt quạt", "Tắt quạt"))
-//        commandList.add(Command("", 5,"Tưới cây ngoài vườn cho mình", "Bật tưới cây"))
-//        commandList.add(Command("", 6,"Tưới cây", "Bật tưới cây"))
-//        commandList.add(Command("", 7,"Mở quạt dùm", "Bật quạt"))
-
-//        commandAdapter = CommandAdapter(commandList)
-//        recyclerView.adapter = commandAdapter
-
 
         val intentLauncher0 =
             registerForActivityResult(PostActivityContract()) { result ->
@@ -177,7 +163,6 @@ class CommandList : AppCompatActivity() {
 
 
         btnAddTask.setOnClickListener {
-//            val intent = Intent(this, AddCmd::class.java)
             intentLauncher.launch("Token $tokenStr")
 
         }

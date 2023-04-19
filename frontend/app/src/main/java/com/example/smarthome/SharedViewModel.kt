@@ -1,6 +1,5 @@
 package com.example.smarthome
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonObject
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.WebSocket
 
 class SharedViewModel:ViewModel() {
@@ -29,9 +26,6 @@ class SharedViewModel:ViewModel() {
 
     private val _statusLiveData = MutableLiveData<JsonObject>()
     val statusLiveData:LiveData<JsonObject> = _statusLiveData
-
-    private val _messageLiveData = MutableLiveData<JsonObject>()
-    val messageLiveData:LiveData<JsonObject> = _messageLiveData
 
     companion object{
         lateinit var socket:WebSocket
@@ -54,9 +48,9 @@ class SharedViewModel:ViewModel() {
     }
 
 
-    fun refreshDetailIntent(token: String, code:String){
+    fun refreshDetailIntent(token: String, slug:String){
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getDetailIntent(token, code)
+            val response = repository.getDetailIntent(token, slug)
             _detailIntent.postValue(response)
         }
     }
@@ -73,10 +67,5 @@ class SharedViewModel:ViewModel() {
         }
     }
 
-    fun refreshChatMessage(jsonObj: JsonObject){
-        viewModelScope.launch(Dispatchers.IO){
-            _messageLiveData.postValue(jsonObj)
-        }
-    }
 
 }
