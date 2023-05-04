@@ -10,7 +10,7 @@ astunparse==1.6.3
 async-timeout==4.0.2
 attrs==22.1.0
 Babel==2.9.1
-backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1;python_version<"3.9"
 bidict==0.22.1
 blis==0.7.9
 boto3==1.26.107
@@ -80,7 +80,7 @@ MarkupSafe==2.1.2
 matplotlib==3.5.3
 mattermostwrapper==2.2
 msgpack==1.0.5
-multidict==6.0.4
+multidict==5.2.0
 murmurhash==1.0.9
 networkx==2.6.3
 numpy==1.23.5

@@ -61,7 +61,7 @@ class SensorDataListAPIView(generics.ListAPIView):
     def get_queryset(self):
         queryset = super().get_queryset()
         house_id = self.request.user.house.house_id if self.request.user.house else None
-        return queryset.filter(house_id=house_id)
+        return queryset.filter(house_id=house_id)[:50]
     
 sensor_data_list_view = SensorDataListAPIView.as_view()
 
