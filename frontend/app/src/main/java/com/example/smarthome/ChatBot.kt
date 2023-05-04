@@ -37,9 +37,8 @@ class ChatBot : AppCompatActivity() {
         }
 
 
-        chatAdapter = ChatAdapter()
-        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        chatAdapter = ChatAdapter()
         recyclerView.adapter = chatAdapter
 
 
@@ -60,8 +59,19 @@ class ChatBot : AppCompatActivity() {
                 val chatMessage = ChatMessage(0, editTextMessage.text.toString())
                 chatAdapter.chatList.add(chatMessage)
                 chatAdapter.notifyItemInserted(chatAdapter.chatList.size)
-//                val text = "\"type\": \"chat_message\", \"message\": \"${chatMessage.text}\""
+//                val text = "{\"type\": \"chat_message\", \"message\": \"${chatMessage.text}\"}"
                 editTextMessage.setText("")
+//                viewModel.refreshChatResponse(chatMessage.text)
+//                viewModel.chatLiveData.observe(this){response->
+//                    if (response == null){
+//                        return@observe
+//                    }
+//
+//                    val chatResponse = ChatMessage(1, response)
+//                    chatAdapter.chatList.add(chatResponse)
+//                    chatAdapter.notifyItemInserted(chatAdapter.chatList.size)
+//
+//                }
             }
             else{
                 Toast.makeText(this, "Bạn chưa nhập tin nhắn", Toast.LENGTH_SHORT).show()

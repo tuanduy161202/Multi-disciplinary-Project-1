@@ -108,9 +108,11 @@ class HomePage : AppCompatActivity() {
             Log.e("socket-okkk", "$data")
 
             if (data["type"].toString() == "\"sensor_data\"") {
-                humid.text = data["humid_data"].toString().plus("%")
-                temp.text = data["temp_data"].toString().plus("°C")
-                Log.e("setData", "${humid.text} and ${temp.text}")
+                val humid_ = data["humid_data"].toString()
+                val temp_ = data["temp_data"].toString()
+                humid.text = humid_.substring(1, humid_.length - 1).plus("%")
+                temp.text = temp_.substring(1, temp_.length - 1).plus("°C")
+//                Log.e("setData", "${humid.text} and ${temp.text}")
             }
         }
 

@@ -27,6 +27,9 @@ class SharedViewModel:ViewModel() {
     private val _statusLiveData = MutableLiveData<JsonObject>()
     val statusLiveData:LiveData<JsonObject> = _statusLiveData
 
+    private val _chatLiveData = MutableLiveData<String>()
+    val chatLiveData:LiveData<String> = _chatLiveData
+
     companion object{
         lateinit var socket:WebSocket
     }
@@ -67,5 +70,11 @@ class SharedViewModel:ViewModel() {
         }
     }
 
+    fun refreshChatResponse(chat:String){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = repository.postChat(chat)
+            _chatLiveData.postValue(response)
+        }
+    }
 
 }

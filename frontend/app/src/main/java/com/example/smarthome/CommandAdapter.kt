@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CommandAdapter():RecyclerView.Adapter<CommandAdapter.CommandViewHolder>(){
     var CommandList:ArrayList<Command> = ArrayList()
-    var onItemClick:((Int) -> Unit)? = null
-    var onTrashClick:((Int) -> Unit)? = null
+//    var onItemClick:((Int) -> Unit)? = null
+//    var onTrashClick:((Int) -> Unit)? = null
 
     inner class CommandViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val commandTextView:TextView= itemView.findViewById(R.id.tvCommandName)
@@ -33,16 +33,16 @@ class CommandAdapter():RecyclerView.Adapter<CommandAdapter.CommandViewHolder>(){
         }
 
 
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(holder.adapterPosition)
-        }
+//        holder.itemView.setOnClickListener {
+//            onItemClick?.invoke(holder.adapterPosition)
+//        }
 
-        holder.itemView.findViewById<ImageButton>(R.id.trashButton).setOnClickListener {
-            onTrashClick?.invoke(holder.adapterPosition)
-//            this.CommandList.removeAt(holder.adapterPosition)
-//            notifyItemRemoved(holder.adapterPosition)
-
-        }
+//        holder.itemView.findViewById<ImageButton>(R.id.trashButton).setOnClickListener {
+////            onTrashClick?.invoke(holder.adapterPosition)
+////            this.CommandList.removeAt(holder.adapterPosition)
+////            notifyItemRemoved(holder.adapterPosition)
+//
+//        }
 
     }
 

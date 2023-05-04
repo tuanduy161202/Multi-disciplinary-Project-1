@@ -101,7 +101,7 @@ class EditCommand : AppCompatActivity() {
                 Toast.makeText(this, "Bạn cần xác định lệnh cụ thể", Toast.LENGTH_SHORT).show()
             }
             else if (commandNeedEdit?.intent == "" && editTextCommand.text.trim().toString() != ""){
-                Toast.makeText(this, "Bạn cần ghim intent 1 intent cho lệnh", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Bạn cần ghim 1 intent cho lệnh", Toast.LENGTH_SHORT).show()
             }
             else{
                 val data = Intent()
