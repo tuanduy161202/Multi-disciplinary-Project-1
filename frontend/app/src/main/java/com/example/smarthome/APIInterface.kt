@@ -23,7 +23,7 @@ interface APIInterface {
     @GET("chatbot/intent_list")
     suspend fun getIntentList(@Header("Authorization") token: String):Response<ArrayList<IntentClass>>
 
-    @GET("chatbot/intent/{code}")
+    @GET("chatbot/intent/{slug}")
     suspend fun getDetailIntent(@Header("Authorization") token: String,
-                                @Path("code") code:String):Response<IntentClass>
+                                @Path("slug", encoded = true) slug:String):Response<IntentClass>
 }

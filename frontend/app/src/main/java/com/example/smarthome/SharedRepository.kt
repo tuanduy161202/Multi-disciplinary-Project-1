@@ -1,9 +1,5 @@
 package com.example.smarthome
 
-
-import kotlinx.coroutines.Dispatchers
-import retrofit2.create
-
 class SharedRepository {
 
     suspend fun getCommandList(token:String):ArrayList<Command>?{
@@ -28,9 +24,8 @@ class SharedRepository {
         return null
     }
 
-    suspend fun getDetailIntent(token:String, code:String):IntentClass?{
-        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).getDetailIntent(token, code)
-
+    suspend fun getDetailIntent(token:String, slug:String):IntentClass?{
+        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).getDetailIntent(token, slug)
         if (request.isSuccessful){
             return request.body()!!
         }

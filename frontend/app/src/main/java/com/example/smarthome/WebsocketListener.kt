@@ -1,11 +1,6 @@
 package com.example.smarthome
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import okhttp3.Response
@@ -32,9 +27,6 @@ class WebsocketListener(val viewModel: SharedViewModel): WebSocketListener() {
                 viewModel.refreshStatus(data)
             }
 
-            "\"chat_message\"" -> {
-                viewModel.refreshChatMessage(data)
-            }
         }
     }
 

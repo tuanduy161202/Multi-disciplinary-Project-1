@@ -30,20 +30,7 @@ class EditCommand : AppCompatActivity() {
 
         btnBack = findViewById(R.id.backFromEdit)
         editTextCommand = findViewById(R.id.editTextCommandEdit)
-//        recyclerIntent = findViewById(R.id.recycleIntentsEdit)
-//        recyclerIntent.setHasFixedSize(true)
-//        recyclerIntent.layoutManager = LinearLayoutManager(this)
 
-
-
-//        intentList = ArrayList()
-//        intentList.add(IntentClass("Bật đèn", "Bật đèn", 2)) //Den
-//        intentList.add(IntentClass("Tắt đèn", "Tắt đèn", 2))
-//        intentList.add(IntentClass("Bật quạt", "Bật quạt", 1))
-//        intentList.add(IntentClass("Tắt quạt", "Tắt quạt", 1))
-//        intentList.add(IntentClass("Tưới cây", "Tưới cây", 4))
-//        intentList.add(IntentClass("Mở rèm", "Mở rèm", 3))
-//        intentList.add(IntentClass("Đóng rèm", "Đóng rèm", 3))
 
 
         intentAdapter = IntentAdapter()
@@ -72,8 +59,10 @@ class EditCommand : AppCompatActivity() {
 
         }
 
-        val str = commandNeedEdit?.intent!!
-        viewModel.refreshDetailIntent(tokenStr, str.substring(str.indexOf("intent") + 7))       //Need to fix
+        var str = commandNeedEdit?.intent!!
+        str = str.substring(str.indexOf("intent") + 7).dropLast(1)
+        Log.e("Check slug", str)
+        viewModel.refreshDetailIntent(tokenStr, str)       //Need to fix
         viewModel.detailIntent.observe(this){response->
             if (response == null){
                 return@observe
