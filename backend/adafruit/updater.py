@@ -6,7 +6,7 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
 from adafruit import aio
-from houses.models import SensorData
+from houses.models import SensorData, House
 
 
 def update_sensor_data():
@@ -32,8 +32,9 @@ def update_sensor_data():
             }
         )
 
-        # SensorData(date=date, humidity=humid_data, 
-        #     house=1, temperature=temp_data).save() # house ???
+        if not SensorData.objects.filter(date=date).exists():
+            SensorData(date=date, humidity=humid_data, 
+                house=House.objects.get(pk=1), temperature=temp_data).save() # house ???
         
 
     scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 2})

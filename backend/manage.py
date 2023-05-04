@@ -9,7 +9,7 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
     os.environ.setdefault('AIO_USERNAME', 'halac123b')
     os.environ.setdefault('AIO_KEY', 'aio_QOwQ45wWCSdhoiF7Ztw2jBkg7d7W')
-    os.environ.setdefault('QUERY_SENSOR_DELAY', '2')
+    os.environ.setdefault('QUERY_SENSOR_DELAY', '10')
     os.environ.setdefault("RASA_HOST", 'http://localhost:5005/')
 
     try:
