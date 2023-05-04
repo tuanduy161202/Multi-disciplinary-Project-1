@@ -37,9 +37,8 @@ class ChatBot : AppCompatActivity() {
         }
 
 
-        chatAdapter = ChatAdapter()
-        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        chatAdapter = ChatAdapter()
         recyclerView.adapter = chatAdapter
 
 
