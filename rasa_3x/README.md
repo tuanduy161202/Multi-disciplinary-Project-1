@@ -34,13 +34,24 @@ python pip install -r requirements.txt
 
 ## Deploy
 
+### Chat using command prompt
 1. Run Actions server:
 ```bash
 rasa run actions
 ```
-2. Chat with Assistant (In another terminal):
+2. Chat with Assistant **(In another terminal)**:
 ```bash
 rasa shell
+```
+
+### Chat using api
+1. Run API server:
+```bash
+rasa run --enable-api
+```
+2. Run Actions server **(In another terminal)**:
+```bash
+rasa run actions
 ```
 
 Optional arguments:

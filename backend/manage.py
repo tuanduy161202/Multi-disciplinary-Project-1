@@ -10,6 +10,7 @@ def main():
     os.environ.setdefault('AIO_USERNAME', 'halac123b')
     os.environ.setdefault('AIO_KEY', 'aio_QOwQ45wWCSdhoiF7Ztw2jBkg7d7W')
     os.environ.setdefault('QUERY_SENSOR_DELAY', '2')
+    os.environ.setdefault("RASA_HOST", 'http://localhost:5005/')
 
     try:
         from django.core.management import execute_from_command_line

@@ -126,3 +126,12 @@ header= {
     Authorization: f'Token {yourtoken}'
 }
 ```
+
+### [Chat]
+```python
+method='POST'
+URL='/chatbot/chat'
+body= {
+    prompt: 'bla bla bla'
+}
+```
