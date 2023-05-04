@@ -26,4 +26,10 @@ interface APIInterface {
     @GET("chatbot/intent/{slug}")
     suspend fun getDetailIntent(@Header("Authorization") token: String,
                                 @Path("slug", encoded = true) slug:String):Response<IntentClass>
+
+    @POST("chatbot/comask")
+    suspend fun postChat(@Body chat:String):Response<String>
+
+//    @POST("chatbot/nan")
+//    suspend fun postCommand(@Body command:Command):Response<String>
 }

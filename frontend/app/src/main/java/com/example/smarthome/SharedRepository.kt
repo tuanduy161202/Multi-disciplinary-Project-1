@@ -33,6 +33,28 @@ class SharedRepository {
         return null
     }
 
+    suspend fun postChat(chat:String):String?{
+        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).postChat(chat)
+
+        if (request.isSuccessful){
+            return request.body()!!
+        }
+
+        return null
+
+    }
+
+
+//    suspend fun postCommand(command: Command):String?{
+//        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).postCommand(command)
+//
+//        if (request.isSuccessful){
+//            return request.body()!!
+//        }
+//
+//        return null
+//    }
+
 //    val client = HttpClient(CIO){
 //        install(WebSockets){
 //            pingInterval = 20_000
