@@ -108,8 +108,9 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Token>, response: Response<Token>) {
                 val res = response.body()
                 if (res != null){
+//                    Log.e("check-token", "$res.token")
                     val intent = Intent(this@MainActivity, HomePage::class.java)
-                    intent.putExtra("TokenStr", res.token)
+                    intent.putExtra("TokenStr", res.token) //res.token
                     intent.putExtra("username", name)
                     intent.putExtra("password", pass)
                     startActivity(intent)

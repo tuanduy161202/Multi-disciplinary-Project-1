@@ -1,5 +1,8 @@
 package com.example.smarthome
 
+import com.google.gson.JsonObject
+import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -27,8 +30,11 @@ interface APIInterface {
     suspend fun getDetailIntent(@Header("Authorization") token: String,
                                 @Path("slug", encoded = true) slug:String):Response<IntentClass>
 
-    @POST("chatbot/comask")
-    suspend fun postChat(@Body chat:String):Response<String>
+
+    @POST("chatbot/chat/")
+    fun postChat(
+        @Body prom:RequestBody
+    ):Call<BotResponse>
 
 //    @POST("chatbot/nan")
 //    suspend fun postCommand(@Body command:Command):Response<String>
