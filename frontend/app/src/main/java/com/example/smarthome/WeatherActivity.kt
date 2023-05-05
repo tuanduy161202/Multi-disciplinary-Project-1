@@ -31,6 +31,7 @@ class WeatherActivity : AppCompatActivity() {
     private lateinit var temp_hour:TextView
     private lateinit var icon_hour: ImageView
     private lateinit var time_hour:TextView
+    private lateinit var btnBack:ImageButton
 
     private val viewModel:SharedViewModel by lazy {
         ViewModelProvider(this)[SharedViewModel::class.java]
@@ -39,6 +40,7 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
         viewModel.refreshWeatherForecast()
+        btnBack = findViewById(R.id.backbtn)
 //        Log.e("kafka", "before token $tokenStr")
         viewModel.weatherForecastData.observe(this) { response ->
             if (response == null) {
@@ -50,8 +52,9 @@ class WeatherActivity : AppCompatActivity() {
             val format_date = SimpleDateFormat("MMM dd, yyyy", Locale.US).format(parse_date).substring(0, 6)
             datetime = findViewById(R.id.date)
             datetime.text = format_date
-            val hour:List<String> = lct["localtime"].toString().substring(12, 17).split(":")
+            val hour:List<String> = lct["localtime"].toString().substring(12, 16).split(":")
             var mid_hour = hour[0].toInt()
+            Log.e("kafka", "$hour")
             if (hour[1].toInt() >= 30)  mid_hour += 1
             if (mid_hour < 2) mid_hour = 2
             if (mid_hour > 21) mid_hour = 21
@@ -127,5 +130,9 @@ class WeatherActivity : AppCompatActivity() {
 //            recyclerView.adapter = commandAdapter
 //            commandAdapter.notifyDataSetChanged()
         }
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
+
 }
