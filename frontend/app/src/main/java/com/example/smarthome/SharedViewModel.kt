@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.JsonObject
+import com.google.gson.JsonObject
 import okhttp3.WebSocket
 
 class SharedViewModel:ViewModel() {
@@ -29,6 +29,9 @@ class SharedViewModel:ViewModel() {
 
     private val _chatLiveData = MutableLiveData<String>()
     val chatLiveData:LiveData<String> = _chatLiveData
+
+    private val _weatherForecastData = MutableLiveData<JsonObject>()
+    val weatherForecastData:LiveData<JsonObject> = _weatherForecastData
 
     companion object{
         lateinit var socket:WebSocket
@@ -74,6 +77,13 @@ class SharedViewModel:ViewModel() {
         viewModelScope.launch(Dispatchers.IO){
             val response = repository.postChat(chat)
             _chatLiveData.postValue(response)
+        }
+    }
+
+    fun refreshWeatherForecast() {
+        viewModelScope.launch(Dispatchers.IO){
+            val response = repository.getWeatherForecast()
+            _weatherForecastData.postValue(response)
         }
     }
 

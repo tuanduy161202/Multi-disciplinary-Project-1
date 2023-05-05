@@ -23,4 +23,11 @@ object ServiceBuilder {
         return retrofit
     }
 
+    fun getInstance():Retrofit {
+        val baseUrl = "http://api.weatherapi.com/"
+        return Retrofit.Builder().baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
 }
