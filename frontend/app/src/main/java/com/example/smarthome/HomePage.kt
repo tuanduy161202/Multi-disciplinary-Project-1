@@ -385,6 +385,8 @@ class HomePage : AppCompatActivity() {
 
         weatherButton.setOnClickListener {
             //TODO: chuyen man hinh
+            val intent = Intent(this, WeatherActivity::class.java)
+            startActivity(intent)
         }
 
         listCommandButton.setOnClickListener {

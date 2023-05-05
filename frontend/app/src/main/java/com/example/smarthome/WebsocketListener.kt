@@ -3,6 +3,7 @@ package com.example.smarthome
 import android.util.Log
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
+import com.google.gson.JsonParser
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
@@ -17,7 +18,7 @@ class WebsocketListener(val viewModel: SharedViewModel): WebSocketListener() {
 
     override fun onMessage(webSocket: WebSocket, text: String) {
 //        Log.e("socket-ok", text)
-        val data = Json.parseToJsonElement(text).jsonObject
+        val data = JsonParser.parseString(text).asJsonObject
         when (data["type"].toString()){
             "\"sensor_data\"" -> {
                 viewModel.refreshSensorData(data)
