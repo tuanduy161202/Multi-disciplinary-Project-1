@@ -10,18 +10,14 @@ intents:
   - turn_off_fan
   - turn_on_water
   - turn_off_water
+  - turn_on_curtain
+  - turn_off_curtain
   - weather_forecast
 
 entities:
-  - no_device
   - city
 
 slots:
-  no_device:
-    type: list
-    mappings:
-    - type: from_entity
-      entity: no_device
   city:
     type: any
     mappings:

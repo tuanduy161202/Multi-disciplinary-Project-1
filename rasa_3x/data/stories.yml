@@ -10,23 +10,13 @@ stories:
   steps:
   - or:
     - intent: turn_on_light
-      entities:
-      - no_device
     - intent: turn_off_light
-      entities:
-      - no_device
     - intent: turn_on_fan
-      entities:
-      - no_device
     - intent: turn_off_fan
-      entities:
-      - no_device
     - intent: turn_on_water
-      entities:
-      - no_device
     - intent: turn_off_water
-      entities:
-      - no_device
+    - intent: turn_on_curtain
+    - intent: turn_off_curtain
   - action: action_control_device
   - intent: thanks
   - action: utter_goodbye

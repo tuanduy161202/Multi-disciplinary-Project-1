@@ -71,15 +71,8 @@ class ActionControlDevice(Action):
                 device_name = 'quạt'
             elif '_water' in message:
                 device_name = 'vòi nước'
-            no_device = tracker.get_slot('no_device')
-            if len(no_device) == 0:
-                dispatcher.utter_message(f'Xác nhận {on_off} tất cả {device_name}')
-                return
-            text = f'Xác nhận {on_off} {device_name} số '
-            first = True
-            for num in no_device:
-                if not first:
-                    text += ', '
-                text += num
-                first = False
+            elif '_curtain' in message:
+                device_name = 'rèm cửa'
+                on_off = 'kéo' if on_off == 'bật' else 'thả'
+            text = f'Xác nhận {on_off} {device_name}'
             dispatcher.utter_message(text + '.')
