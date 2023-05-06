@@ -19,13 +19,13 @@ from adafruit import aio
 # Chat
 @api_view(['POST'])
 def chat(request, *args, **kwargs):
-    def broadcast_status(self, device, status):
+    def broadcast_status(device, status):
         async_to_sync(get_channel_layer().group_send)(
             'room',
             {
                 'type': 'send_status',
                 'device': device,
-                'status': 'on' if 1 else 'off'
+                'status': 'on' if status == 1 else 'off'
             }
         )
 
