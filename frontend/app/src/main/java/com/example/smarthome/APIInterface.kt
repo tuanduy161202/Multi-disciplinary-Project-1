@@ -40,6 +40,9 @@ interface APIInterface {
         @Body prom:RequestBody
     ):Call<BotResponse>
 
+    @GET("house/sensor_data_list")
+    suspend fun getSensorData(@Header("Authorization") token: String): Response<ArrayList<SensorData>>
+
 //    @POST("chatbot/nan")
 //    suspend fun postCommand(@Body command:Command):Response<String>
 }

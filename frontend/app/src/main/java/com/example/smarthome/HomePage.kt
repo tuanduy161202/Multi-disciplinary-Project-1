@@ -112,6 +112,11 @@ class HomePage : AppCompatActivity() {
                 val temp_ = data["temp_data"].toString()
                 humid.text = humid_.substring(1, humid_.length - 1).plus("%")
                 temp.text = temp_.substring(1, temp_.length - 1).plus("°C")
+                val temp_num = temp_.substring(1, temp_.length - 1).toDouble()
+                if (temp_num >= 50){
+                    Toast.makeText(this@HomePage, "Nhiệt độ bất thường", Toast.LENGTH_SHORT).show()
+                }
+
 //                Log.e("setData", "${humid.text} and ${temp.text}")
             }
         }
@@ -379,8 +384,11 @@ class HomePage : AppCompatActivity() {
 
         chartButton.setOnClickListener {
             //TODO: chuyen man hinh
-//            val intent = Intent(this, ChatBot::class.java)
-//            startActivity(intent)
+            val tokenStr:String = intent.getStringExtra("TokenStr")!!
+
+            val intent = Intent(this, SensorChart::class.java)
+            intent.putExtra("tokenStr", tokenStr)
+            startActivity(intent)
         }
 
         weatherButton.setOnClickListener {
