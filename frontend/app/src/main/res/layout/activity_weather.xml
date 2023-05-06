@@ -31,6 +31,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/temp_hour0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -41,15 +42,17 @@
                 android:textSize="15sp"></TextView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:id="@+id/icon_hour0"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny"></ImageView>
 
             <TextView
+                android:id="@+id/time_hour0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="15:00"
                 android:textAlignment="center"
@@ -68,6 +71,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/temp_hour1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -78,15 +82,17 @@
                 android:textSize="15sp"></TextView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:id="@+id/icon_hour1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny"></ImageView>
 
             <TextView
+                android:id="@+id/time_hour1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="15:00"
                 android:textAlignment="center"
@@ -106,6 +112,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/temp_hour2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -116,15 +123,17 @@
                 android:textSize="15sp"></TextView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:id="@+id/icon_hour2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny"></ImageView>
 
             <TextView
+                android:id="@+id/time_hour2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="15:00"
                 android:textAlignment="center"
@@ -143,6 +152,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/temp_hour3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -153,15 +163,17 @@
                 android:textSize="15sp"></TextView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:id="@+id/icon_hour3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny"></ImageView>
 
             <TextView
+                android:id="@+id/time_hour3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="15:00"
                 android:textAlignment="center"
@@ -180,6 +192,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/temp_hour4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -190,15 +203,17 @@
                 android:textSize="15sp"></TextView>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:id="@+id/icon_hour4"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny"></ImageView>
 
             <TextView
+                android:id="@+id/time_hour4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="15:00"
                 android:textAlignment="center"
@@ -242,6 +257,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="45dp"
@@ -250,24 +266,151 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back"
+            <TextView
+                android:id="@+id/time_forecast0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="Apr, 15"
+                android:textAlignment="viewEnd"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="30sp"></TextView>
+
+            <ImageView
+                android:id="@+id/icon_forecast0"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/sunny"></ImageView>
+
+            <TextView
+                android:id="@+id/temp_forecast0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="10°C"
+                android:textAlignment="viewStart"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="26sp"></TextView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/time_forecast1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="Apr, 15"
+                android:textAlignment="viewEnd"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="30sp"></TextView>
+
+            <ImageView
+                android:id="@+id/icon_forecast1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/sunny"></ImageView>
+
+            <TextView
+                android:id="@+id/temp_forecast1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="10°C"
+                android:textAlignment="viewStart"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="26sp"></TextView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/time_forecast2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="Apr, 15"
+                android:textAlignment="viewEnd"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="30sp"></TextView>
+
+            <ImageView
+                android:id="@+id/icon_forecast2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/sunny"></ImageView>
+
+            <TextView
+                android:id="@+id/temp_forecast2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="15dp"
+                android:text="32.6°C"
+                android:textAlignment="viewStart"
+                android:textColor="#fff"
+                android:textFontWeight="800"
+                android:textSize="26sp"></TextView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="22dp"
+        android:layout_height="24dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:background="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        app:layout_constraintVertical_bias="0.032"></ImageView>
+        app:layout_constraintVertical_bias="0.032"></ImageButton>
 
     <TextView
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
@@ -300,3 +443,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

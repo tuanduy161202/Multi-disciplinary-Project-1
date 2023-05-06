@@ -1,5 +1,6 @@
 package com.example.smarthome
 
+import com.google.gson.JsonObject
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
@@ -65,6 +66,15 @@ class SharedRepository {
 //
 //    }
 
+    suspend fun getWeatherForecast():JsonObject?{
+        val request = ServiceBuilder.getInstance().create(APIInterface::class.java).getWeatherForecast()
+
+        if (request.isSuccessful){
+            return request.body()!!
+        }
+
+        return null
+    }
 
 //    suspend fun postCommand(command: Command):String?{
 //        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).postCommand(command)

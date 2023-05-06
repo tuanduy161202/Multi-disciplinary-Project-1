@@ -2,9 +2,6 @@ version: "3.1"
 
 nlu:
 
-- regex: no_device
-  examples: |
-    - \d
 
 - lookup: city
   examples: |
@@ -110,53 +107,49 @@ nlu:
     - Bật đèn lên
     - Bật hết đèn lên
     - Cho nhà sáng lên đi
-    - mở đèn số [1](no_device) cho tôi
-    - tối quá, mở đèn số [2](no_device) cho tôi đi
-    - rasa bật đèn số [3](no_device) giúp tui với
-    - bật đèn số [4](no_device) đi
-    - mở đèn số [5](no_device), [2](no_device) và [3](no_device) đi
+    - mở đèn cho tôi
+    - tối quá, mở đèn cho tôi đi
+    - rasa bật đèn giúp tui với
+    - bật đèn đi
 
 - intent: turn_off_light
   examples: |
     - tắt đèn đi
     - tắt hết đèn đi
     - tắt đèn đi ngủ thôi
-    - tắt đèn số [1](no_device) cho tôi
-    - tắt đèn số [2](no_device) cho tôi đi
-    - rasa tắt đèn số [3](no_device) giúp tui với
-    - tắt đèn số [4](no_device) đi
-    - tắt đèn số [5](no_device), [2](no_device) và [3](no_device) đi
+    - tắt đèn cho tôi
+    - tắt đèn cho tôi đi
+    - rasa tắt đèn giúp tui với
+    - tắt đèn đi
 
 - intent: turn_on_fan
   examples: |
     - bật hết quạt đi
     - mở hết quạt lên
-    - mở quạt số [1](no_device) cho tôi
-    - nóng quá, mở quạt số [2](no_device) cho tôi đi
-    - rasa bật quạt số [3](no_device) giúp tui với
-    - bật quạt số [4](no_device) đi
-    - bật quạt số [5](no_device), [2](no_device) và [3](no_device) đi
+    - mở quạt cho tôi
+    - nóng quá, mở quạt cho tôi đi
+    - rasa bật quạt giúp tui với
+    - bật quạt đi
 
 - intent: turn_off_fan
   examples: |
     - tắt hết quạt đi
     - lạnh quá, tắt quạt
-    - tắt quạt số [1](no_device) cho tôi
-    - tắt quạt số [2](no_device) cho tôi đi
-    - rasa tắt quạt số [3](no_device) giúp tui với
-    - tắt quạt số [4](no_device) đi
-    - tắt quạt số [5](no_device), [2](no_device) và [3](no_device) đi
+    - tắt quạt cho tôi
+    - tắt quạt cho tôi đi
+    - rasa tắt quạt giúp tui với
+    - tắt quạt đi
 
 - intent: turn_on_water
   examples: |
     - mở vòi nước hết đi
     - mở hết vòi nước đi
     - tưới cây nào
-    - mở vòi số [1](no_device) cho tôi
-    - mở vòi nước số [2](no_device) cho tôi đi
-    - rasa bật vòi số [3](no_device) giúp tui với
-    - bật vòi nước số [4](no_device) đi
-    - bật các vòi số [5](no_device), [2](no_device) và [3](no_device) đi
+    - tưới cây giúp tôi
+    - mở vòi nước cho tôi
+    - mở vòi nước số cho tôi đi
+    - rasa bật vòi nước giúp tui với
+    - bật vòi nước đi
 
 - intent: turn_off_water
   examples: |
@@ -164,11 +157,30 @@ nlu:
     - tắt vòi nước
     - ngừng tưới cây đi
     - ngưng tưới cây
-    - tắt vòi số [1](no_device) cho tôi
-    - tắt vòi số [2](no_device) cho tôi đi
-    - rasa tắt vòi nước số [3](no_device) giúp tui với
-    - tắt vòi nước số [4](no_device) đi
-    - tắt các vòi số [5](no_device), [2](no_device) và [3](no_device) đi
+    - tắt vòi nước cho tôi
+    - tắt vòi nước cho tôi đi
+    - rasa tắt vòi nước giúp tui với
+    - tắt vòi nước đi
+
+- intent: turn_on_curtain
+  examples: |
+    - kéo rèm cửa lên đi
+    - kéo rèm lên nào
+    - kéo rèm lên
+    - kéo rèm lên giúp tôi với
+    - kéo rèm lên đi
+    - kéo rèm cửa lên giúp tôi
+    - rasa kéo rèm giúp tui với
+
+- intent: turn_off_curtain
+  examples: |
+    - thả rèm cửa xuống đi
+    - thả rèm xuống nào
+    - thả rèm lxuống
+    - thả rèm xuống giúp tôi với
+    - thả rèm xuống đi
+    - thả rèm cửa xuống giúp tôi
+    - rasa thả rèm giúp tui với
 
 - intent: weather_forecast
   examples: |
