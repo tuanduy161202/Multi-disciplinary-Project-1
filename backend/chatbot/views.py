@@ -18,6 +18,7 @@ from .permissions import IsCommandOwner, IsIntentOwner
 def chat(request, *args, **kwargs):
     try:
         prompt = request.POST.get('prompt','')
+        print(f"veryimport: {prompt}")
         rasa_host = os.environ.get('RASA_HOST')
         
         intent_endpoint = f'{rasa_host}model/parse'
