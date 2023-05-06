@@ -33,6 +33,8 @@ class SharedViewModel:ViewModel() {
     private val _weatherForecastData = MutableLiveData<JsonObject>()
     val weatherForecastData:LiveData<JsonObject> = _weatherForecastData
 
+    private val _sensorChartData = MutableLiveData<ArrayList<SensorData>?>()
+    val sensorChartData: MutableLiveData<ArrayList<SensorData>?> = _sensorChartData
     companion object{
         lateinit var socket:WebSocket
     }
@@ -83,6 +85,14 @@ class SharedViewModel:ViewModel() {
         viewModelScope.launch(Dispatchers.IO){
             val response = repository.getWeatherForecast()
             _weatherForecastData.postValue(response)
+        }
+    }
+
+    // Sensor chart
+    fun refreshSensorChart(token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = repository.getSensorData(token)
+            _sensorChartData.postValue(response)
         }
     }
 

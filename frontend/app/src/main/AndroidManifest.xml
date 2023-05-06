@@ -16,10 +16,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SensorChart"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ChatBot"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"  >
-        <meta-data
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
@@ -27,7 +34,7 @@
             android:name=".EditCommand"
             android:exported="false"
             android:windowSoftInputMode="adjustPan">
-        <meta-data
+            <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>

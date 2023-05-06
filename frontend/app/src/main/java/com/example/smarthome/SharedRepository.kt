@@ -76,6 +76,15 @@ class SharedRepository {
         return null
     }
 
+    // Get sensor data list
+    suspend fun getSensorData(token: String): ArrayList<SensorData>? {
+        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).getSensorData(token)
+
+        if (request.isSuccessful){
+            return request.body()!!
+        }
+        return null
+    }
 //    suspend fun postCommand(command: Command):String?{
 //        val request = ServiceBuilder.getretrofit().create(APIInterface::class.java).postCommand(command)
 //
