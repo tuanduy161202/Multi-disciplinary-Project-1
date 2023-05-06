@@ -110,10 +110,12 @@ class HomePage : AppCompatActivity() {
             if (data["type"].toString() == "\"sensor_data\"") {
                 val humid_ = data["humid_data"].toString()
                 val temp_ = data["temp_data"].toString()
-                humid.text = humid_.substring(1, humid_.length - 1).plus("%")
+                humid.text = "  "+humid_.substring(1, humid_.length - 1).plus("%")
                 temp.text = temp_.substring(1, temp_.length - 1).plus("°C")
-                val temp_num = temp_.substring(1, temp_.length - 1).toDouble()
-                if (temp_num >= 50){
+                var temp_num = temp_.substring(1, temp_.length - 1).toDouble()
+//                temp_num = 52.2
+//                temp.text = "52.2".plus("°C")
+                if (temp_num > 50){
                     Toast.makeText(this@HomePage, "Nhiệt độ bất thường", Toast.LENGTH_SHORT).show()
                 }
 
@@ -126,7 +128,7 @@ class HomePage : AppCompatActivity() {
             if (data == null) return@observe
 
             if (data["type"].toString() == "\"update_status\""){
-                Log.e("socket-ok", "light ${data["device"]}")
+                Log.e("status receive", "${data["device"]}")
 
                 when (data["device"].toString()){
                     "\"light\"" -> {

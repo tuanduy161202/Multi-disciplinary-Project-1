@@ -62,7 +62,11 @@ class SensorChart : AppCompatActivity() {
 
     private fun drawGraph() {
 
-        val domainLabels = arrayOf<Number>(1, 2, 3, 4, 5, 6, 7, 8)
+        val domainLabels = mutableListOf<Int>()
+
+        for (i in 1..tempList.size){
+            domainLabels.add(i)
+        }
 
         Log.e("kafka", "3. sensor data $tempList")
 
@@ -70,14 +74,14 @@ class SensorChart : AppCompatActivity() {
 //            Arrays.asList(*domainLabels), Arrays.asList(35, 34, 34, 30, 32, 36, 35, 37),"Temperature"
 //        )
         val series1 = SimpleXYSeries(
-            Arrays.asList(*domainLabels), tempList,"Temperature"
+            domainLabels, tempList,"Temperature"
         )
 //        val series2 = SimpleXYSeries(
 //            Arrays.asList(*domainLabels), Arrays.asList(60, 61, 60, 55, 58, 65, 61, 60), "Humidity"
 //        )
 
         val series2 = SimpleXYSeries(
-            Arrays.asList(*domainLabels), humidList, "Humidity"
+            domainLabels, humidList, "Humidity"
         )
 
         val series1Format = LineAndPointFormatter(Color.BLUE, Color.BLACK, null, null)

@@ -45,16 +45,16 @@ def chat(request, *args, **kwargs):
             status = 1 if 'on' in intent else 0
             if 'light' in intent:
                 broadcast_status('light', status)
-                # aio.send('led1', status)
+                aio.send('led1', status)
             elif 'fan' in intent:
                 broadcast_status('fan', status)
-                # aio.send('fan', status)
+                aio.send('fan', status)
             elif 'water' in intent:
                 broadcast_status('watering', status)
-                # aio.send('pump', status)
+                aio.send('pump', status)
             elif 'curtain' in intent:
                 broadcast_status('curtain', status)
-                # aio.send('hang-clothe', status)
+                aio.send('hang-clothe', status)
             
 
         text_endpoint = f'{rasa_host}webhooks/rest/webhook'
