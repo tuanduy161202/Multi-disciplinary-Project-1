@@ -1,5 +1,7 @@
 import os
 import requests as re
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -11,14 +13,25 @@ from rest_framework.decorators import api_view
 from .models import Intent, Command
 from .serializers import IntentSerializer, CommandSerializer
 from .permissions import IsCommandOwner, IsIntentOwner
+from adafruit import aio
 
 
 # Chat
 @api_view(['POST'])
 def chat(request, *args, **kwargs):
+    def broadcast_status(self, device, status):
+        async_to_sync(get_channel_layer().group_send)(
+            'room',
+            {
+                'type': 'send_status',
+                'device': device,
+                'status': 'on' if 1 else 'off'
+            }
+        )
+
     try:
         prompt = request.POST.get('prompt','')
-        print(f"veryimport: {prompt}")
+        # print(f"veryimport: {prompt}")
         rasa_host = os.environ.get('RASA_HOST')
         
         intent_endpoint = f'{rasa_host}model/parse'
@@ -26,7 +39,23 @@ def chat(request, *args, **kwargs):
             "text": prompt
         }
         intent = re.post(url=intent_endpoint, json=payload).json().get('intent',{}).get('name','nlu_fallback')
-        # [TODO] control device and broacast status
+
+        # control device and broacast status
+        if 'turn' in intent:
+            status = 1 if 'on' in intent else 0
+            if 'light' in intent:
+                broadcast_status('light', status)
+                # aio.send('led1', status)
+            elif 'fan' in intent:
+                broadcast_status('fan', status)
+                # aio.send('fan', status)
+            elif 'water' in intent:
+                broadcast_status('watering', status)
+                # aio.send('pump', status)
+            elif 'curtain' in intent:
+                broadcast_status('curtain', status)
+                # aio.send('hang-clothe', status)
+            
 
         text_endpoint = f'{rasa_host}webhooks/rest/webhook'
         payload = {
