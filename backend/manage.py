@@ -8,7 +8,7 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
     os.environ.setdefault('AIO_USERNAME', 'halac123b')
-    os.environ.setdefault('AIO_KEY', 'aio_QOwQ45wWCSdhoiF7Ztw2jBkg7d7W')
+    os.environ.setdefault('AIO_KEY', 'aio_Ilsz78WS2eG8qepSVgNfjYk0ovUb')
     os.environ.setdefault('QUERY_SENSOR_DELAY', '10')
     os.environ.setdefault("RASA_HOST", 'http://localhost:5005/')
 

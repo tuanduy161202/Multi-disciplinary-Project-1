@@ -27,12 +27,14 @@ class SharedViewModel:ViewModel() {
     private val _statusLiveData = MutableLiveData<JsonObject>()
     val statusLiveData:LiveData<JsonObject> = _statusLiveData
 
-    private val _chatLiveData = MutableLiveData<String>()
-    val chatLiveData:LiveData<String> = _chatLiveData
+    private val _chatLiveData = MutableLiveData<BotResponse>()
+    val chatLiveData:LiveData<BotResponse> = _chatLiveData
 
     private val _weatherForecastData = MutableLiveData<JsonObject>()
     val weatherForecastData:LiveData<JsonObject> = _weatherForecastData
 
+    private val _sensorChartData = MutableLiveData<ArrayList<SensorData>?>()
+    val sensorChartData: MutableLiveData<ArrayList<SensorData>?> = _sensorChartData
     companion object{
         lateinit var socket:WebSocket
     }
@@ -73,17 +75,24 @@ class SharedViewModel:ViewModel() {
         }
     }
 
-    fun refreshChatResponse(chat:String){
-        viewModelScope.launch(Dispatchers.IO){
-            val response = repository.postChat(chat)
-            _chatLiveData.postValue(response)
-        }
-    }
+//    fun refreshChatResponse(chat:UserChat):BotResponse?{
+//            val response = repository.postChat(chat)
+////            _chatLiveData.postValue(response)
+//            return response
+//    }
 
     fun refreshWeatherForecast() {
         viewModelScope.launch(Dispatchers.IO){
             val response = repository.getWeatherForecast()
             _weatherForecastData.postValue(response)
+        }
+    }
+
+    // Sensor chart
+    fun refreshSensorChart(token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = repository.getSensorData(token)
+            _sensorChartData.postValue(response)
         }
     }
 
